@@ -1,4 +1,4 @@
-選課小精靈
+選課小精靈 ![TravisCI](https://travis-ci.com/NUKCSIE110/coursElf.svg?branch=master)
 ===
 
 ## Features
