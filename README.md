@@ -1,5 +1,4 @@
-選課小精靈 ![TravisCI](https://travis-ci.com/NUKCSIE110/coursElf.svg?branch=master)
-===
+# 選課小精靈 ![TravisCI](https://travis-ci.com/NUKCSIE110/coursElf.svg?branch=master)
 
 ## Features
 
@@ -17,8 +16,8 @@
 ## TODOs
 
 - 爬蟲
-    - 歷史學分
-    - 這學期有開的課程
+  - 歷史學分
+  - 這學期有開的課程
 - 排課演算法
 
 ## License
