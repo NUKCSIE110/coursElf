@@ -1,0 +1,59 @@
+.query
+    padding-top: 5em
+    margin-left: 35vw
+    width: 50vw
+    .dropdown
+        display: inline-block
+        .loading
+            margin-left: 2em
+    .result
+        background-color: rgba(0,0,0,0)
+        .resultCard
+            min-height: 5em
+            margin-top: 1.5em
+            width: 100%
+            background-color: white
+            transition: all 1s
+            box-shadow: 0.25em 0.25em 0.5em 0em rgba(0,0,0,0.5)
+            display: flex
+            justify-content: space-around
+            align-items: center
+            &:hover
+                box-shadow: 0 0 0 0 rgba(0,0,0,0)
+                transform: translate(0.25em,0.25em)
+            .classID
+                color: #a0a0a0
+            .className
+                letter-spacing: 0.15em
+            .compulsory,.choose
+                line-height: 1.5em
+            .compulsory
+                color: steelblue
+                &::before
+                    content: "必"
+                    border: solid 2px steelblue
+            .choose
+                color: #a0a0a0
+                &::before
+                    content: "選"
+                    border: solid 2px #a0a0a0
+            .compulsory::before,.choose::before //選修必修icon
+                display: inline-block
+                width: 1.5em
+                height: 1.5em
+                margin-right: 0.5em
+                box-sizing: border-box
+                text-align: center
+                line-height: 1em
+                font-weight: bold
+                border-radius: 0.75em
+                
+        .resultCard.first
+            flex-direction: column
+            justify-content: center
+            font-size: 1.2em
+            height: 20em
+            .fas
+                font-size: 3em
+                margin-bottom: 0.25em
+                color: steelblue
