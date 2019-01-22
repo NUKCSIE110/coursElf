@@ -1,0 +1,309 @@
+{
+  "stats": {
+    "suites": 7,
+    "tests": 8,
+    "passes": 1,
+    "pending": 7,
+    "failures": 0,
+    "start": "2019-01-22T01:37:52.685Z",
+    "end": "2019-01-22T01:37:52.713Z",
+    "duration": 28,
+    "testsRegistered": 8,
+    "passPercent": 100,
+    "pendingPercent": 87.5,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "success",
+    "pendingPercentClass": "success"
+  },
+  "suites": {
+    "uuid": "6ec7c1f1-a375-4d93-b041-ac0a0e9c2ff4",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [],
+    "afterHooks": [],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "e2d970ea-8917-4d56-af25-71007fe4a6ef",
+        "title": "GET /api/test",
+        "fullFile": "/home/iftnt/Project/coursElf/test/apiSpec.js",
+        "file": "/test/apiSpec.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "respond with json",
+            "fullTitle": "GET /api/test respond with json",
+            "timedOut": false,
+            "duration": 22,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "request(app)\n  .get(\"/api/test\")\n  .set(\"Accept\", \"application/json\")\n  .end(function(err, res) {\n    if (err) return done(err); //server error\n    if (res.statusCode !== 200) return done(res.body); //api error;\n    const result = res.body;\n    result.should.be.Object();\n    result.should.have.keys(\"msg\");\n    result.msg.should.be.equal(\"Succeed\");\n    done();\n  });",
+            "err": {},
+            "isRoot": false,
+            "uuid": "be243470-46dc-4125-88a4-4d181c711f3c",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "be243470-46dc-4125-88a4-4d181c711f3c"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 22,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "98ccfd01-248a-4625-b99f-f8adefe95b63",
+        "title": "Homepage",
+        "fullFile": "/home/iftnt/Project/coursElf/test/indexSpec.js",
+        "file": "/test/indexSpec.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [],
+        "suites": [
+          {
+            "uuid": "4be22d5d-b4cb-454d-8670-0e2f23162bae",
+            "title": "User not logged in",
+            "fullFile": "/home/iftnt/Project/coursElf/test/indexSpec.js",
+            "file": "/test/indexSpec.js",
+            "beforeHooks": [],
+            "afterHooks": [],
+            "tests": [
+              {
+                "title": "Redirect to login page",
+                "fullTitle": "Homepage User not logged in Redirect to login page",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": true,
+                "code": "",
+                "err": {},
+                "isRoot": false,
+                "uuid": "4f0e13ee-854b-40c6-afcf-79431db5aa51",
+                "isHook": false,
+                "skipped": false
+              }
+            ],
+            "suites": [],
+            "passes": [],
+            "failures": [],
+            "pending": [
+              "4f0e13ee-854b-40c6-afcf-79431db5aa51"
+            ],
+            "skipped": [],
+            "duration": null,
+            "root": false,
+            "rootEmpty": false,
+            "_timeout": 2000
+          },
+          {
+            "uuid": "6c597ebb-ea67-46f9-8271-00113aa755cd",
+            "title": "User logged in",
+            "fullFile": "/home/iftnt/Project/coursElf/test/indexSpec.js",
+            "file": "/test/indexSpec.js",
+            "beforeHooks": [],
+            "afterHooks": [],
+            "tests": [
+              {
+                "title": "Show user's courses",
+                "fullTitle": "Homepage User logged in Show user's courses",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": true,
+                "code": "",
+                "err": {},
+                "isRoot": false,
+                "uuid": "87e66f36-422d-4ea9-8b09-3f3e236e21ef",
+                "isHook": false,
+                "skipped": false
+              }
+            ],
+            "suites": [],
+            "passes": [],
+            "failures": [],
+            "pending": [
+              "87e66f36-422d-4ea9-8b09-3f3e236e21ef"
+            ],
+            "skipped": [],
+            "duration": null,
+            "root": false,
+            "rootEmpty": false,
+            "_timeout": 2000
+          }
+        ],
+        "passes": [],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "156e288c-af7f-4dc7-a895-18ae054568e7",
+        "title": "POST /user/login",
+        "fullFile": "/home/iftnt/Project/coursElf/test/userSpec.js",
+        "file": "/test/userSpec.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [],
+        "suites": [
+          {
+            "uuid": "9cd53a45-052b-45d4-bf9c-f893bc362543",
+            "title": "Correct StuID and password",
+            "fullFile": "/home/iftnt/Project/coursElf/test/userSpec.js",
+            "file": "/test/userSpec.js",
+            "beforeHooks": [],
+            "afterHooks": [],
+            "tests": [
+              {
+                "title": "Set session",
+                "fullTitle": "POST /user/login Correct StuID and password Set session",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": true,
+                "code": "",
+                "err": {},
+                "isRoot": false,
+                "uuid": "104dafad-c213-4043-a751-51552b9ef45b",
+                "isHook": false,
+                "skipped": false
+              },
+              {
+                "title": "Start crawler to elearning",
+                "fullTitle": "POST /user/login Correct StuID and password Start crawler to elearning",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": true,
+                "code": "",
+                "err": {},
+                "isRoot": false,
+                "uuid": "a0f4b1b1-3ea0-4a2c-b3e6-6f45b72dcd09",
+                "isHook": false,
+                "skipped": false
+              },
+              {
+                "title": "Redirect to homepage",
+                "fullTitle": "POST /user/login Correct StuID and password Redirect to homepage",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": true,
+                "code": "",
+                "err": {},
+                "isRoot": false,
+                "uuid": "c1f94e82-66e3-4df3-aea8-6a2f6838f085",
+                "isHook": false,
+                "skipped": false
+              }
+            ],
+            "suites": [],
+            "passes": [],
+            "failures": [],
+            "pending": [
+              "104dafad-c213-4043-a751-51552b9ef45b",
+              "a0f4b1b1-3ea0-4a2c-b3e6-6f45b72dcd09",
+              "c1f94e82-66e3-4df3-aea8-6a2f6838f085"
+            ],
+            "skipped": [],
+            "duration": null,
+            "root": false,
+            "rootEmpty": false,
+            "_timeout": 2000
+          },
+          {
+            "uuid": "65788447-342e-4eac-afef-8b9ea47aac6c",
+            "title": "Incorrect StuID or password",
+            "fullFile": "/home/iftnt/Project/coursElf/test/userSpec.js",
+            "file": "/test/userSpec.js",
+            "beforeHooks": [],
+            "afterHooks": [],
+            "tests": [
+              {
+                "title": "Return to login page",
+                "fullTitle": "POST /user/login Incorrect StuID or password Return to login page",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": true,
+                "code": "",
+                "err": {},
+                "isRoot": false,
+                "uuid": "efe87b77-5c7e-4d8e-87d0-1b91fd4bb0a9",
+                "isHook": false,
+                "skipped": false
+              },
+              {
+                "title": "Show error message",
+                "fullTitle": "POST /user/login Incorrect StuID or password Show error message",
+                "timedOut": false,
+                "duration": 0,
+                "pass": false,
+                "fail": false,
+                "pending": true,
+                "code": "",
+                "err": {},
+                "isRoot": false,
+                "uuid": "ccbd70d3-d26d-41cd-bd1d-b05ff7df2ab7",
+                "isHook": false,
+                "skipped": false
+              }
+            ],
+            "suites": [],
+            "passes": [],
+            "failures": [],
+            "pending": [
+              "efe87b77-5c7e-4d8e-87d0-1b91fd4bb0a9",
+              "ccbd70d3-d26d-41cd-bd1d-b05ff7df2ab7"
+            ],
+            "skipped": [],
+            "duration": null,
+            "root": false,
+            "rootEmpty": false,
+            "_timeout": 2000
+          }
+        ],
+        "passes": [],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 2000
+  },
+  "copyrightYear": 2019
+}
