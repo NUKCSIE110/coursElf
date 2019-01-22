@@ -1,3 +1,2 @@
 --reporter mochawesome
 --recursive
---growl
