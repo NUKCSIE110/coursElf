@@ -1,13 +1,17 @@
 .container
-    display: flex
+    //display: flex
     height: 80vh
-    justify-content: center
-    align-items: center
+    width: 90vw
+    //justify-content: space-around
+    //align-items: center
 
 ul.timeline 
+    position: fixed
+    top: 10em
+    left: 19vw
     width: 10em
     height: 20em
-    margin-left: 10em
+    //margin-left: 10em
     font-size: 1.5em;
     border-left: solid 2px black
     display: flex
@@ -39,6 +43,28 @@ ul.timeline
         &:nth-child(even)
             justify-content flex-start
             left: -0.5em
+.query
+    margin-left: 35vw
+    width: 50vw
+    height: 1000vh
+    background-color: rgba(255,255,255,0.5)
+
+@media (max-width: 1350px)
+    .container
+        justify-content: center
+
+
+@media (max-width: 1100px)
+    .container
+        width: 800px
+        display: flex
+        justify-content: space-around
+        align-items: center
+    ul.timeline 
+        position: static
+        margin-left: 10em
+    .query
+        display: none
 
 @media (max-width: 550px)
     ul.timeline 
