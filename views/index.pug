@@ -4,3 +4,17 @@ block css
   link(rel="stylesheet", href="/stylesheets/index.css")
 
 block content
+  ul.timeline
+    - 
+      var list = [
+        {date:'1/1', title: '第一階段選課'},
+        {date:'2/1', title: '第二階段選課'},
+        {date:'2/20', title: '加退選開始'},
+        {date:'2/28', title: '加退選結束'},
+      ]
+    each item in list
+      li
+        .info
+          .date= item.date
+          .title= item.title
+    

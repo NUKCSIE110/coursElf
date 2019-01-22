@@ -1,0 +1,46 @@
+.container
+    display: flex
+    height: 80vh
+    justify-content: center
+    align-items: center
+
+ul.timeline 
+    width: 10em
+    height: 20em
+    margin-left: 10em
+    font-size: 1.5em;
+    border-left: solid 2px black
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    li 
+        display: flex
+        align-items: center
+        text-align: center
+        position: relative
+        .info
+            box-sizing: border-box
+            padding: 0 1em
+            .date
+                margin-bottom: 0.5em
+        &:nth-child(odd)::after,
+        &:nth-child(even)::before
+            content: ''
+            display: block
+            box-sizing: border-box
+            width: 1em
+            height: 1em
+            border-radius: 50%
+            border: solid 0.25em black
+            background-color: #fafafa
+        &:nth-child(odd)
+            justify-content flex-end
+            left: -9.5em
+        &:nth-child(even)
+            justify-content flex-start
+            left: -0.5em
+
+@media (max-width: 550px)
+    ul.timeline 
+        font-size: 4.75vw
+        

@@ -40,6 +40,15 @@ body
        cursor pointer
        border-bottom: solid 2px rgba(0,0,0,0.5)
 
+.container
+  margin: 0 auto
+  width: 800px
+  position: relative
+
+@media (max-width: 900px)
+  .container
+    width: 95vw
+
 @media (max-width: 560px)
   .titleBar nav
     display: none
@@ -55,6 +64,10 @@ body
       height: 3em;
   .titleBar .burger
     display: inline-block
+
+@media (max-width: 335px)
+  .titleBar
+    font-size: 1em
 
 @keyframes floatingIcon
   0%
