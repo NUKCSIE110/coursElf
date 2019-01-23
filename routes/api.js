@@ -26,6 +26,14 @@ router.route("/courses/:type/:target").get(function(req, res, next){
     }
   ));
 })
-
+router.route("/target/:type").get(function(req, res, next){
+  res.status(200);
+  res.json([
+    "大一",
+    "大二",
+    "大三",
+    "大四"
+  ]);
+});
 
 module.exports = router;
