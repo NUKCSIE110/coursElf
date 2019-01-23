@@ -7,7 +7,7 @@ $(".titleBar .allCourses").click(function() {
   window.history.pushState({}, "", "/query");
 });
 
-$(document).ready(function() {
+function init() {
   let width = 400;
   let height = 500;
   let draw = SVG("timeline").size(width, height);
@@ -94,4 +94,5 @@ $(document).ready(function() {
   $("#timeline svg").removeAttr("width");
   $("#timeline svg").removeAttr("height");
   $("#timeline svg").attr("preserveAspectRatio", "xMidYMid");
-});
+}
+init();
