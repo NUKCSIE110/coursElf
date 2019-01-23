@@ -12,7 +12,7 @@ router.route("/courses/:type/:target").get(function(req, res, next){
       "dept": req.params.type.toUpperCase(),
       "id": "B051",
       "target": req.params.target.toUpperCase(),
-      "name": "電腦網路",
+      "name": "電腦網路長長長長長長長長長長長長",
       "point": "3",
       "compulsory": true,
       "teacher": "吳俊興",

@@ -75,7 +75,7 @@ function fetchResult(type, target) {
               <div class="resultCard">
                 <span class="classID">${e.dept + e.id}</span>
                 <span class="className">${e.name}</span>
-                <span class="teacher">教授:${e.teacher}</span>
+                <span class="teacher">${e.teacher}</span>
                 <span class="location">上課地點:${e.location}</span>
                 <span class="${e.compulsory ? "compulsory" : "choose"}">${
             e.point
