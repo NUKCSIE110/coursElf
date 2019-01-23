@@ -62,3 +62,6 @@ typings/
 
 #compiled stylus
 public/stylesheets/*.css
+
+#mochawesome report
+mochawesome-report/
