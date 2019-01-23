@@ -62,7 +62,7 @@ $(document).ready(function() {
   for (let i = 0; i < lables.length; i++) {
     let offset =
       lineStart + ((i + 0.5) / lables.length) * (lineEnd - lineStart);
-    let circle = draw.circle(30).fill("#fff");
+    let circle = draw.circle(20).fill("#fff");
     circle.stroke({
       color: now >= lables[i].time ? "steelblue" : "black",
       width: 4
