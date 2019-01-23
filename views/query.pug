@@ -1,11 +1,5 @@
-.dropdown
-    button(class="btn btn-secondary dropdown-toggle",type="button",id="classSelect",data-toggle="dropdown",aria-haspopup="true",aria-expanded="false") 現在有開什麼課
-    .dropdown-menu(aria-labelledby="dropdownMenuButton")
-        each item in classList
-            a(class="dropdown-item",href="#",data-code=item.code)= item.text   
-    i(class="fas fa-sync-alt fa-spin fa-lg loading")
-.result
-    .resultCard(class="first")
-        //i(class="fas fa-exclamation-triangle")
-        i(class="fas fa-info-circle")
-        p 上方選單可以查這學期有開的課哦
+extends layout
+
+block content
+  .query
+    include _query.pug    

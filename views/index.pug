@@ -2,9 +2,9 @@ extends layout
 
 block css
   link(rel="stylesheet", href="/stylesheets/index.css")
-  link(rel="stylesheet", href="/stylesheets/query.css")
+
 block js
-  script(src="/js/query.js")
+  script(src="/js/index.js")
 
 block content
   ul.timeline
@@ -23,4 +23,4 @@ block content
           .date= item.date
           .title= item.title
   .query
-    include query.pug    
+    include _query.pug    

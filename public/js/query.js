@@ -41,4 +41,6 @@ $(document).ready(() => {
     });
   });
   $(".query .loading").hide();
+  if (typeof Homepage === "undefined")
+    $(".titleBar .allCourses").addClass("selected");
 });

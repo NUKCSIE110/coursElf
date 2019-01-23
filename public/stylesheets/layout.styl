@@ -39,10 +39,11 @@ body
       padding: 1em
       box-sizing: border-box
       transition: all 0.5s
-      &:hover
-       color: #d0d0d0
-       cursor pointer
-       border-bottom: solid 2px rgba(0,0,0,0.5)
+      &:hover, &.selected
+        cursor pointer
+        border-bottom: solid 2px rgba(0,0,0,0.5)
+      &:hover 
+        color: #d0d0d0 !important
 
 .content
   margin: 3em auto 0 auto

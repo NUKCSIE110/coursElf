@@ -4,7 +4,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { 'title': 'NUK選課小幫手', 'loggedin': false, 'classList':classList});
+  res.render('index', { 'loggedin': false, 'classList':classList});
+});
+router.get('/query', function(req, res, next) {
+  res.render('query', { 'loggedin': false, 'classList':classList});
 });
 
 module.exports = router;
