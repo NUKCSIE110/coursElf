@@ -59,3 +59,14 @@
                 color: steelblue
             .fa-exclamation-triangle
                 color: gold
+
+@media(max-width: 530px)
+    .resultCard .location
+        display: none
+@media(max-width: 350px)
+    .resultCard
+        .compulsory::before,.choose::before
+            font-size: 0px
+            border: solid 0px rgba(0,0,0,0) !important
+        .className
+            letter-spacing: 0px !important
