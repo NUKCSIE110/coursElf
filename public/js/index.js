@@ -51,10 +51,10 @@ $(document).ready(function() {
   if (threshold != lineEnd) {
     draw
       .circle(12)
-      .fill("lightsteelblue")
+      .fill("#B0C4DE")
       .center(centerLine, threshold)
-      .animate(2000, "<>")
-      .size(8)
+      .animate(1500, "<>")
+      .attr({fill:"#4682B4"})
       .loop(true, true);
   }
 
