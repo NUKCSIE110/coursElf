@@ -5,9 +5,9 @@
     "passes": 5,
     "pending": 7,
     "failures": 0,
-    "start": "2019-01-22T17:34:42.820Z",
-    "end": "2019-01-22T17:34:42.853Z",
-    "duration": 33,
+    "start": "2019-01-23T07:57:03.134Z",
+    "end": "2019-01-23T07:57:03.169Z",
+    "duration": 35,
     "testsRegistered": 12,
     "passPercent": 100,
     "pendingPercent": 58.3,
@@ -19,7 +19,7 @@
     "pendingPercentClass": "warning"
   },
   "suites": {
-    "uuid": "3428ed86-0f8c-4df2-ab22-d5d346558196",
+    "uuid": "bb8ffe62-f0df-4775-a152-2b2c238423b6",
     "title": "",
     "fullFile": "",
     "file": "",
@@ -28,7 +28,7 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "937cefc5-a439-4e1e-b570-2af7d02fd364",
+        "uuid": "efc6724c-3072-471e-96c1-16922bde3096",
         "title": "GET /api/test",
         "fullFile": "/home/iftnt/Project/coursElf/test/apiSpec.js",
         "file": "/test/apiSpec.js",
@@ -48,7 +48,7 @@
             "code": "request(app)\n  .get(\"/api/test\")\n  .set(\"Accept\", \"application/json\")\n  .end(function(err, res) {\n    if (err) return err; //server error\n    if (res.statusCode !== 200) return res.body; //api error;\n    result = res.body;\n  });",
             "err": {},
             "isRoot": false,
-            "uuid": "110abec8-4fc2-4685-8515-0e8a20aebfab",
+            "uuid": "1344dbef-0d59-4fb4-95e4-721549e25939",
             "isHook": false,
             "skipped": false
           },
@@ -65,15 +65,15 @@
             "code": "result.should.be.Object();\nresult.should.have.keys(\"msg\");\nresult.msg.should.be.equal(\"Succeed\");",
             "err": {},
             "isRoot": false,
-            "uuid": "bcba2b00-7477-4980-b36e-68828cef338e",
+            "uuid": "55ae873a-adf6-4d13-9e4c-bc48e066abc2",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "110abec8-4fc2-4685-8515-0e8a20aebfab",
-          "bcba2b00-7477-4980-b36e-68828cef338e"
+          "1344dbef-0d59-4fb4-95e4-721549e25939",
+          "55ae873a-adf6-4d13-9e4c-bc48e066abc2"
         ],
         "failures": [],
         "pending": [],
@@ -84,7 +84,7 @@
         "_timeout": 2000
       },
       {
-        "uuid": "bdf68a1a-c03c-4c73-ab58-8560376be220",
+        "uuid": "580c6429-c19a-403a-9289-17a0b9401381",
         "title": "GET /api/courses/:type",
         "fullFile": "/home/iftnt/Project/coursElf/test/apiSpec.js",
         "file": "/test/apiSpec.js",
@@ -104,7 +104,7 @@
             "code": "request(app)\n  .get(\"/api/courses/all\")\n  .set(\"Accept\", \"application/json\")\n  .end(function(err, res) {\n    if (err) return err; //server error\n    if (res.statusCode !== 200) return res.body; //api error;\n    result = res.body;\n  });",
             "err": {},
             "isRoot": false,
-            "uuid": "c126bd53-717b-49f7-991f-7954db79a74b",
+            "uuid": "0ed23fac-7fb7-439d-a06c-01ac2f272525",
             "isHook": false,
             "skipped": false
           },
@@ -121,7 +121,7 @@
             "code": "result.should.be.Array();",
             "err": {},
             "isRoot": false,
-            "uuid": "f6e2d02b-3ce1-490c-a337-e87e31e5cdfd",
+            "uuid": "da0b6a84-9a07-4cab-b92c-34a861b6afa9",
             "isHook": false,
             "skipped": false
           },
@@ -138,16 +138,16 @@
             "code": "result.forEach(e => {\n  e.should.be.Object();\n  e.should.have.keys('dept','id','target','name','point','compulsory','teacher','location','time');\n  e.compulsory.should.be.Boolean();\n  e.time.should.be.Array();\n});",
             "err": {},
             "isRoot": false,
-            "uuid": "d838d9d4-f10c-4612-ac72-df90359c5e19",
+            "uuid": "7f86095a-367b-42bc-9475-25d923f5afb0",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "c126bd53-717b-49f7-991f-7954db79a74b",
-          "f6e2d02b-3ce1-490c-a337-e87e31e5cdfd",
-          "d838d9d4-f10c-4612-ac72-df90359c5e19"
+          "0ed23fac-7fb7-439d-a06c-01ac2f272525",
+          "da0b6a84-9a07-4cab-b92c-34a861b6afa9",
+          "7f86095a-367b-42bc-9475-25d923f5afb0"
         ],
         "failures": [],
         "pending": [],
@@ -158,7 +158,7 @@
         "_timeout": 2000
       },
       {
-        "uuid": "6e8be7f8-2652-45ee-ac58-5b31187427d2",
+        "uuid": "738a9b7b-a9ca-4795-8eb5-e24f6746a084",
         "title": "Homepage",
         "fullFile": "/home/iftnt/Project/coursElf/test/indexSpec.js",
         "file": "/test/indexSpec.js",
@@ -167,7 +167,7 @@
         "tests": [],
         "suites": [
           {
-            "uuid": "e2e6df53-782c-4573-b6ad-f777438ba2d2",
+            "uuid": "60fe5594-2c10-417f-8c35-e900bb99a8b8",
             "title": "User not logged in",
             "fullFile": "/home/iftnt/Project/coursElf/test/indexSpec.js",
             "file": "/test/indexSpec.js",
@@ -185,7 +185,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "ec8f2a97-3c22-4ac2-80b4-49a024053a27",
+                "uuid": "63851267-bec3-4de2-b862-7f37391b6336",
                 "isHook": false,
                 "skipped": false
               }
@@ -194,7 +194,7 @@
             "passes": [],
             "failures": [],
             "pending": [
-              "ec8f2a97-3c22-4ac2-80b4-49a024053a27"
+              "63851267-bec3-4de2-b862-7f37391b6336"
             ],
             "skipped": [],
             "duration": null,
@@ -203,7 +203,7 @@
             "_timeout": 2000
           },
           {
-            "uuid": "d287c74a-0332-4b5f-81e5-66b6e24f971f",
+            "uuid": "2249c509-6207-4bba-9aa8-35b0f27d9c5d",
             "title": "User logged in",
             "fullFile": "/home/iftnt/Project/coursElf/test/indexSpec.js",
             "file": "/test/indexSpec.js",
@@ -221,7 +221,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "1d1c047c-886a-43d6-bda9-2a61539e1a12",
+                "uuid": "2b424558-d33e-4727-9916-e244b0d34acd",
                 "isHook": false,
                 "skipped": false
               }
@@ -230,7 +230,7 @@
             "passes": [],
             "failures": [],
             "pending": [
-              "1d1c047c-886a-43d6-bda9-2a61539e1a12"
+              "2b424558-d33e-4727-9916-e244b0d34acd"
             ],
             "skipped": [],
             "duration": null,
@@ -249,7 +249,7 @@
         "_timeout": 2000
       },
       {
-        "uuid": "08dd52f4-e3ce-4ccc-a553-7c134256aa93",
+        "uuid": "339ddb8d-1b1d-4794-864c-17c32e9586c0",
         "title": "POST /user/login",
         "fullFile": "/home/iftnt/Project/coursElf/test/userSpec.js",
         "file": "/test/userSpec.js",
@@ -258,7 +258,7 @@
         "tests": [],
         "suites": [
           {
-            "uuid": "bb96224e-ab52-4323-8d02-e95c470f318b",
+            "uuid": "780aeddf-e911-4226-9858-b2a7edba3291",
             "title": "Correct StuID and password",
             "fullFile": "/home/iftnt/Project/coursElf/test/userSpec.js",
             "file": "/test/userSpec.js",
@@ -276,7 +276,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "63ed9ad7-9688-4bca-a413-05cbf5be878a",
+                "uuid": "399fa7bb-7daa-4d4e-b4d3-fb95d42b3be3",
                 "isHook": false,
                 "skipped": false
               },
@@ -291,7 +291,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "90d233b0-3029-4510-8735-a60bf63fcac7",
+                "uuid": "97e68f9e-07af-48b5-b02c-f240d8238112",
                 "isHook": false,
                 "skipped": false
               },
@@ -306,7 +306,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "ca30751c-7c89-4512-9ac9-5f092f6aba32",
+                "uuid": "5f151584-1630-409e-a4b7-74a4a05183d0",
                 "isHook": false,
                 "skipped": false
               }
@@ -315,9 +315,9 @@
             "passes": [],
             "failures": [],
             "pending": [
-              "63ed9ad7-9688-4bca-a413-05cbf5be878a",
-              "90d233b0-3029-4510-8735-a60bf63fcac7",
-              "ca30751c-7c89-4512-9ac9-5f092f6aba32"
+              "399fa7bb-7daa-4d4e-b4d3-fb95d42b3be3",
+              "97e68f9e-07af-48b5-b02c-f240d8238112",
+              "5f151584-1630-409e-a4b7-74a4a05183d0"
             ],
             "skipped": [],
             "duration": null,
@@ -326,7 +326,7 @@
             "_timeout": 2000
           },
           {
-            "uuid": "532ecb74-30af-4bb2-9fde-91ae1204c424",
+            "uuid": "3b29d927-631f-45a2-8dbd-5e101e608033",
             "title": "Incorrect StuID or password",
             "fullFile": "/home/iftnt/Project/coursElf/test/userSpec.js",
             "file": "/test/userSpec.js",
@@ -344,7 +344,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "328d3077-d14d-4142-9690-b3e01481012f",
+                "uuid": "f32961c3-1657-4e27-b6cd-0fbf0178b923",
                 "isHook": false,
                 "skipped": false
               },
@@ -359,7 +359,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "7e813041-406b-49ee-9e1c-c3c95267759b",
+                "uuid": "0508261c-24e9-4c33-bb6e-89fb6c8af767",
                 "isHook": false,
                 "skipped": false
               }
@@ -368,8 +368,8 @@
             "passes": [],
             "failures": [],
             "pending": [
-              "328d3077-d14d-4142-9690-b3e01481012f",
-              "7e813041-406b-49ee-9e1c-c3c95267759b"
+              "f32961c3-1657-4e27-b6cd-0fbf0178b923",
+              "0508261c-24e9-4c33-bb6e-89fb6c8af767"
             ],
             "skipped": [],
             "duration": null,
