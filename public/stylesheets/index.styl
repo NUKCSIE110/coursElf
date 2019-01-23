@@ -4,7 +4,13 @@
     //justify-content: space-around
     //align-items: center
 
-ul.timeline 
+#timeline
+    position: fixed
+    top: 10em
+    left: 5vw
+    width: 400px
+    height: 500px
+/*ul.timeline 
     position: fixed
     top: 10em
     left: 19vw
@@ -43,6 +49,7 @@ ul.timeline
         &:nth-child(even)
             justify-content flex-start
             left: -0.5em
+*/
 .query
     margin-left: 35vw
     width: 50vw
@@ -63,15 +70,21 @@ ul.timeline
         display: flex
         justify-content: space-around
         align-items: center
-    ul.timeline 
+    #timeline 
+        text-align: center
         position: static
-        margin-left: 10em
+        margin-top: -15vh
+        width: 430px
+        height: 60vh
+        //margin-left: 10em
     .query
         margin-left: 0
         width: 100%
         display: none
 
 @media (max-width: 550px)
-    ul.timeline 
-        font-size: 4.75vw
+    //ul.timeline 
+    //    font-size: 4.75vw
+    #timeline
+        width: 80%
         
