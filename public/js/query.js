@@ -2,17 +2,29 @@ $(document).ready(() => {
   $(".query a.dropdown-item").each(function(i) {
     $(this).click(function(e) {
       $(".query .dropdown button").text($(this).text());
+    });
+  });
+  $(".query .selType a.dropdown-item").each(function(i) {
+    $(this).click(function(e) {
+      fetchResult($(this).data('code'), 'all');
+    });
+  });
+  $(".query .loading").hide();
+  if (typeof Homepage === "undefined")
+    $(".titleBar .allCourses").addClass("selected");
+});
+
+function fetchResult(type, target){
       $(".query .loading").show();
       $(".query .result").slideUp(200, () => {
-        fetch(`/api/courses/${$(this).data("code")}`)
+        fetch(`/api/courses/${type}/${target}`)
           .then(r => {
             if (r.ok) {
               return r.json();
             }
-            throw new Error("Network response was not ok.");
+            throw new Error(`${r.statusText} (${r.status})`);
           })
           .then(d => {
-            $(".query .loading").hide();
             $(".query .result").html("");
             d.forEach(e => {
               let content = `
@@ -27,20 +39,17 @@ $(document).ready(() => {
               </div>`;
               $(".query .result").append(content);
             });
-            $(".query .result").slideDown(200);
           })
-          .catch(function(error) {
+          .catch(error => {
             $(".query .result").html(`
                 <div class="resultCard first">    
                     <i class="fas fa-exclamation-triangle"></i>    
                     取得資料錯誤:${error.message}
                 </div>`);
+          })
+          .finally(()=>{
             $(".query .result").slideDown(200);
-          });
+            $(".query .loading").hide();
+          })
       });
-    });
-  });
-  $(".query .loading").hide();
-  if (typeof Homepage === "undefined")
-    $(".titleBar .allCourses").addClass("selected");
-});
+}

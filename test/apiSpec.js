@@ -21,11 +21,11 @@ describe("GET /api/test", () => {
   });
 });
 
-describe("GET /api/courses/:type", ()=>{
+describe("GET /api/courses/:type/:target", ()=>{
   let result = {};
   it("respond with json", () => {
     request(app)
-      .get("/api/courses/all")
+      .get("/api/courses/all/all")
       .set("Accept", "application/json")
       .end(function(err, res) {
         if (err) return err; //server error

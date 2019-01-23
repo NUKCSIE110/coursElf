@@ -3,11 +3,14 @@ block append css
 block append js
   script(src="/js/query.js")
 
-.dropdown
-    button(class="btn btn-secondary dropdown-toggle",type="button",id="classSelect",data-toggle="dropdown",aria-haspopup="true",aria-expanded="false") 現在有開什麼課
+.dropdown(class="selType")
+    button(class="btn btn-secondary dropdown-toggle",type="button",id="typeSelBtn",data-toggle="dropdown",aria-haspopup="true",aria-expanded="false") 現在有開什麼課
     .dropdown-menu(aria-labelledby="dropdownMenuButton")
         each item in classList
-            a(class="dropdown-item",data-code=item.code)= item.text   
+            a(class="dropdown-item",data-code=item.code)= item.text
+.dropdown(class="selTarget")
+    button(class="btn btn-secondary dropdown-toggle",type="button",id="targetSelBtn",data-toggle="dropdown",aria-haspopup="true",aria-expanded="false") 全部班級
+    .dropdown-menu(aria-labelledby="dropdownMenuButton")
     i(class="fas fa-sync-alt fa-spin fa-lg loading")
 .result
     .resultCard(class="first")
