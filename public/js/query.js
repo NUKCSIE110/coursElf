@@ -3,6 +3,7 @@ function init(){
   $(".selType a").each(function() {
     console.log($(this));
     $(this).click(function() {
+      if($("#typeSelBtn").data("value")===$(this).data('code')) return;
       $("#typeSelBtn").text($(this).text());
       $("#typeSelBtn").data("value", $(this).data("code"));
       $("#targetSelBtn").text("全部班級");
@@ -47,6 +48,7 @@ function fetchTarget(type) {
       });
       $(".selTarget .dropdown-menu a").each(function() {
         $(this).click(function() {
+          if($("#targetSelBtn").data("value")===$(this).data('code')) return;
           $("#targetSelBtn").text($(this).text());
           $("#targetSelBtn").data("value", $(this).data("code"));
           fetchResult(
