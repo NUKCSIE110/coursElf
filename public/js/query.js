@@ -87,11 +87,10 @@ function fetchResult(type, target) {
                 <p class="${e.compulsory ? "compulsory" : "choose"}">
                   ${e.compulsory ? "必修" : "選修"} ${e.point} 學分
                 </p>
-                <p><a href="${detailUrl}">
+                <p><a href="${detailUrl}"  target="_blank">
                   原始課程資料 <i class="fas fa-external-link-alt"></i>
                 </a></p>
           `;
-          console.log(detailUrl);
           let content = `
               <a class="resultCard" data-toggle="tooltip" data-html="true" title='${detail}'>
                 <span class="classID">${e.dept + e.id}</span>
