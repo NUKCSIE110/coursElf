@@ -1,7 +1,7 @@
-function init(){
+function init() {
   $(".selType a").each(function() {
     $(this).click(function() {
-      if($("#typeSelBtn").data("value")===$(this).data('code')) return;
+      if ($("#typeSelBtn").data("value") === $(this).data("code")) return;
       $("#typeSelBtn").text($(this).text());
       $("#typeSelBtn").data("value", $(this).data("code"));
       $("#targetSelBtn").text("全部班級");
@@ -17,7 +17,7 @@ function init(){
   $(".query .loading").hide();
   if (typeof Homepage === "undefined")
     $(".titleBar .allCourses").addClass("selected");
-};
+}
 init();
 
 function fetchTarget(type) {
@@ -29,7 +29,7 @@ function fetchTarget(type) {
       throw new Error(`${r.statusText} (${r.status})`);
     })
     .then(d => {
-      $(".selTarget .dropdown-menu").html('');
+      $(".selTarget .dropdown-menu").html("");
       $("#targetSelBtn").text("全部班級");
       $("#targetSelBtn").data("value", "all");
       let newA = document.createElement("a");
@@ -46,7 +46,7 @@ function fetchTarget(type) {
       });
       $(".selTarget .dropdown-menu a").each(function() {
         $(this).click(function() {
-          if($("#targetSelBtn").data("value")===$(this).data('code')) return;
+          if ($("#targetSelBtn").data("value") === $(this).data("code")) return;
           $("#targetSelBtn").text($(this).text());
           $("#targetSelBtn").data("value", $(this).data("code"));
           fetchResult(
@@ -71,16 +71,40 @@ function fetchResult(type, target) {
       .then(d => {
         $(".query .result").html("");
         d.forEach(e => {
+          let detailUrl = `https://course.nuk.edu.tw/QueryCourse/tcontent.asp?
+              OpenYear=107&Helf=2&Sclass=${e.dept}&Cono=${e.id}`.replace(
+            /[\s\t\n]/g,
+            ""
+          );
+          const weekdays=['', '一', '二', '三', '四', '五'];
+          e.time = e.time.map(x=>`${weekdays[x[0]]}${x[1]}`);
+          let detail = `
+                <h5 class="classID">${e.dept + e.id}</h5>
+                <p class="className">${e.name}</p>
+                <p class="teacher">教授: ${e.teacher}</p>
+                <p class="time">上課時間: ${e.time.join(', ')}</p>
+                <p class="location">上課地點: ${e.location}</p>
+                <p class="${e.compulsory ? "compulsory" : "choose"}">
+                  ${e.compulsory ? "必修" : "選修"} ${e.point} 學分
+                </p>
+                <p><a href="${detailUrl}">
+                  原始課程資料 <i class="fas fa-external-link-alt"></i>
+                </a></p>
+          `;
+          console.log(detailUrl);
           let content = `
-              <div class="resultCard">
+              <a class="resultCard" data-toggle="tooltip" data-html="true" title='${detail}'>
                 <span class="classID">${e.dept + e.id}</span>
                 <span class="className">${e.name}</span>
                 <span class="teacher">${e.teacher}</span>
                 <span class="location">上課地點:${e.location}</span>
-                <span class="${e.compulsory ? "compulsory" : "choose"}">${
-            e.point
-          }學分</span>
-              </div>`;
+                <span class="${e.compulsory ? "compulsory" : "choose"}">
+                  ${e.point}學分
+                </span>
+              </a>`;
+          $(content).click(function() {
+            console.log("test");
+          });
           $(".query .result").append(content);
         });
       })
@@ -92,8 +116,32 @@ function fetchResult(type, target) {
                 </div>`);
       })
       .finally(() => {
+        $('[data-toggle="tooltip"]').tooltip({ html: true, trigger: "manual" });
+        $('[data-toggle="tooltip"]').each(function() {
+          //防止Body的click事件把tooltip清掉
+          $(this).click(function(e) {
+            e.stopPropagation();
+          });
+          //等價於Desktop上的hover, mobile上的click
+          $(this).mouseenter(function(e) {
+            let that = this;
+            $('[data-toggle="tooltip"]').each(function() {
+              if (this != that) {
+                $(this).tooltip("hide");
+              }
+            });
+            $(this).tooltip("show");
+          });
+        });
         $(".query .result").slideDown(200);
         $(".query .loading").hide();
+        //gtag("event", "search", { search_term: `${type}/${target}` });
       });
   });
 }
+
+$("body").click(function() {
+  $('[data-toggle="tooltip"]').each(function() {
+    $(this).tooltip("hide");
+  });
+});
