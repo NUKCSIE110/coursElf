@@ -69,6 +69,7 @@ function fetchResult(type, target) {
         throw new Error(`${r.statusText} (${r.status})`);
       })
       .then(d => {
+        hideAllTooltip();
         $(".query .result").html("");
         d.forEach(e => {
           let detailUrl = `https://course.nuk.edu.tw/QueryCourse/tcontent.asp?
@@ -101,9 +102,6 @@ function fetchResult(type, target) {
                   ${e.point}學分
                 </span>
               </a>`;
-          $(content).click(function() {
-            console.log("test");
-          });
           $(".query .result").append(content);
         });
       })
@@ -118,9 +116,9 @@ function fetchResult(type, target) {
         $('[data-toggle="tooltip"]').tooltip({ html: true, trigger: "manual" });
         $('[data-toggle="tooltip"]').each(function() {
           //防止Body的click事件把tooltip清掉
-          $(this).click(function(e) {
-            e.stopPropagation();
-          });
+          // $(this).click(function(e) {
+          //   e.stopPropagation();
+          // });
           //等價於Desktop上的hover, mobile上的click
           $(this).mouseenter(function(e) {
             let that = this;
@@ -139,8 +137,16 @@ function fetchResult(type, target) {
   });
 }
 
-$("body").click(function() {
+// $("body").click(function() {
+//   hideAllTooltip();
+// });
+
+$(".result").mouseleave(function() {
+  hideAllTooltip();
+});
+
+function hideAllTooltip(){
   $('[data-toggle="tooltip"]').each(function() {
     $(this).tooltip("hide");
   });
-});
+}
