@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var stylus = require("stylus");
 var helmet = require('helmet');
+require('dotenv').load();
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -43,5 +44,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+console.log(process.env.DB_LOC);
 
 module.exports = app;
