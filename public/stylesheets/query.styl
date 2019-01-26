@@ -56,6 +56,14 @@
                 text-align: center
                 &::before
                     content: "教授:"
+            .time
+                text-align: center
+                min-width: 6em
+                font-size: 0.6em
+                &::before
+                    content: "時間"
+                    font-size: 1.666em
+                    display: block
                 
         .resultCard.first
             flex-direction: column
@@ -74,7 +82,7 @@
     color: lightskyblue 
 
 @media(max-width: 530px)
-    .resultCard .location
+    .resultCard .time
         display: none
 
 @media(max-width: 450px)

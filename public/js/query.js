@@ -97,7 +97,7 @@ function fetchResult(type, target) {
                 <span class="classID">${e.dept + e.id}</span>
                 <span class="className">${e.name}</span>
                 <span class="teacher">${e.teacher}</span>
-                <span class="location">上課地點:${e.location}</span>
+                <span class="time">${e.time.join(',')}</span>
                 <span class="${e.compulsory ? "compulsory" : "choose"}">
                   ${e.point}學分
                 </span>
