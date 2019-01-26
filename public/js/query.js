@@ -1,7 +1,5 @@
 function init(){
-  console.log('a')
   $(".selType a").each(function() {
-    console.log($(this));
     $(this).click(function() {
       if($("#typeSelBtn").data("value")===$(this).data('code')) return;
       $("#typeSelBtn").text($(this).text());
