@@ -77,13 +77,13 @@ function fetchResult(type, target) {
             /[\s\t\n]/g,
             ""
           );
-          const weekdays=['', '一', '二', '三', '四', '五'];
-          e.time = e.time.map(x=>`${weekdays[x[0]]}${x[1]}`);
+          const weekdays = ["", "一", "二", "三", "四", "五"];
+          e.time = e.time.map(x => `${weekdays[x[0]]}${x[1]}`);
           let detail = `
                 <h5 class="classID">${e.dept + e.id}</h5>
                 <p class="className">${e.name}</p>
                 <p class="teacher">教授: ${e.teacher}</p>
-                <p class="time">上課時間: ${e.time.join(', ')}</p>
+                <p class="time">上課時間: ${e.time.join(", ")}</p>
                 <p class="location">上課地點: ${e.location}</p>
                 <p class="${e.compulsory ? "compulsory" : "choose"}">
                   ${e.compulsory ? "必修" : "選修"} ${e.point} 學分
@@ -115,10 +115,6 @@ function fetchResult(type, target) {
       .finally(() => {
         $('[data-toggle="tooltip"]').tooltip({ html: true, trigger: "manual" });
         $('[data-toggle="tooltip"]').each(function() {
-          //防止Body的click事件把tooltip清掉
-          // $(this).click(function(e) {
-          //   e.stopPropagation();
-          // });
           //等價於Desktop上的hover, mobile上的click
           $(this).mouseenter(function(e) {
             let that = this;
@@ -137,15 +133,13 @@ function fetchResult(type, target) {
   });
 }
 
-// $("body").click(function() {
-//   hideAllTooltip();
-// });
-
 $(".result").mouseleave(function() {
+  let el = document.elementFromPoint(event.pageX, event.pageY);
+  if ($(el).hasClass("tooltip") || $(el).parents(".tooltip").length > 0) return;
   hideAllTooltip();
 });
 
-function hideAllTooltip(){
+function hideAllTooltip() {
   $('[data-toggle="tooltip"]').each(function() {
     $(this).tooltip("hide");
   });
