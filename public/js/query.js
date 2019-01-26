@@ -117,13 +117,17 @@ function fetchResult(type, target) {
         $('[data-toggle="tooltip"]').each(function() {
           //等價於Desktop上的hover, mobile上的click
           $(this).mouseenter(function(e) {
-            let that = this;
-            $('[data-toggle="tooltip"]').each(function() {
-              if (this != that) {
-                $(this).tooltip("hide");
-              }
-            });
+            hideAllTooltip();
             $(this).tooltip("show");
+
+            setTimeout(
+              function() {
+                $(this).on('click',function() {
+                  $(this).tooltip("toggle");
+                });
+              }.bind(this),
+              100
+            );
           });
         });
         $(".query .result").slideDown(200);
@@ -141,6 +145,7 @@ $(".result").mouseleave(function() {
 
 function hideAllTooltip() {
   $('[data-toggle="tooltip"]').each(function() {
+    $(this).off('click');
     $(this).tooltip("hide");
   });
 }
