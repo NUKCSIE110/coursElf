@@ -119,11 +119,13 @@ function fetchResult(type, target) {
           $(this).mouseenter(function(e) {
             hideAllTooltip();
             $(this).tooltip("show");
+            $(this).addClass("clicked");
 
             setTimeout(
               function() {
                 $(this).on('click',function() {
                   $(this).tooltip("toggle");
+                  $(this).toggleClass("clicked");
                 });
               }.bind(this),
               100
@@ -147,5 +149,6 @@ function hideAllTooltip() {
   $('[data-toggle="tooltip"]').each(function() {
     $(this).off('click');
     $(this).tooltip("hide");
+    $(this).removeClass("clicked");
   });
 }
