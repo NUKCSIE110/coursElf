@@ -143,9 +143,16 @@ function fetchResult(type, target) {
   });
 }
 
-$(".result").mouseleave(function() {
-  let el = document.elementFromPoint(event.pageX, event.pageY);
-  if ($(el).hasClass("tooltip") || $(el).parents(".tooltip").length > 0) return;
+$(".result").mouseleave(function(event) {
+  let resultBox = $(".result")[0].getBoundingClientRect();
+  let el = document.elementFromPoint(event.screenX, event.screenY);
+  if (
+    event.pageX < resultBox.right +window.scrollX &&
+    event.pageX > resultBox.left + window.screenX &&
+    event.pageY < resultBox.bottom + window.scrollY &&
+    event.pageY > retultBox.top + window.screenY
+  )
+    return;
   hideAllTooltip();
 });
 
