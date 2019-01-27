@@ -79,6 +79,7 @@ function fetchResult(type, target) {
           let detail = `
                 <h5 class="classID">${e.dept + e.id}</h5>
                 <p class="className">${e.name}</p>
+                <p class="target">開課班級: ${e.target}</p>
                 <p class="teacher">教授: ${e.teacher}</p>
                 <p class="time">上課時間: ${e.time.join(", ")}</p>
                 <p class="location">上課地點: ${e.location}</p>

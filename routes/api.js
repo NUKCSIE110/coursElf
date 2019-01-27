@@ -25,7 +25,7 @@ router.route("/courses/:type/:target").get(async function(req, res, next) {
     let e = {
       dept: _e.dept,
       id: _e.id,
-      target: _e.target,
+      target: getTargetName(_e.target),
       name: _e.name,
       point: _e.point,
       compulsory: _e.compulsory,
