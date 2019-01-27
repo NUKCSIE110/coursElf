@@ -9,14 +9,14 @@ $("form.loginform").submit(function(e) {
   waitingWords.update();
   setInterval(() => waitingWords.update(), 2000);
   $(".loginform .loading").show();
-  $(this).prop("disabled", false);
+  $("#submit").prop("disabled", true);
   postForm("/users/login")
     .then(data => {
       $("#message").removeClass();
       if (data.status === "ok") {
         $("#message").addClass("text-success");
         $("#message").text(data.msg);
-        window.location = "/query"
+        window.location = "/query";
       } else {
         $("#message").addClass("text-danger");
         $("#message").text(data.msg);
@@ -56,11 +56,17 @@ class ganTalk {
   }
 }
 function postForm(url) {
-  const formData = new FormData(document.querySelector("form.loginform"));
+  const formData = JSON.stringify({
+    sid: $("#sid").val(),
+    pw: $("#pw").val()
+  });
 
   return fetch(url, {
     method: "POST",
-    body: formData // a FormData will automatically set the 'Content-Type'
+    body: formData,
+    headers: new Headers({
+      "Content-Type": "application/json"
+    })
   }).then(r => {
     if (r.ok) {
       return r.json();
