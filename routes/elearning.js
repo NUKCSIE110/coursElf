@@ -18,19 +18,22 @@ var elearningLogin = {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          'Content-Length': postData.length
+          "Content-Length": postData.length
         }
       };
       var req = https.request(options, res => {
-        if(res.statusCode===302 && res.headers.location.search("ERR")===-1){
-            resolve(sid);
-        }else{
-            reject({'message': 'login failed'});
+        if (
+          res.statusCode === 302 &&
+          res.headers.location.search("ERR") === -1
+        ) {
+          resolve(true);
+        } else {
+          reject({ message: "e平臺我說你打錯密碼了" });
         }
       });
 
       req.on("error", e => {
-          reject(e);
+        reject({ message: "e平臺發生錯誤" });
       });
 
       req.write(postData);

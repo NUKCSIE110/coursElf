@@ -41,7 +41,7 @@ app.use(
     }),
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: true
     /*cookie: { secure: true }*/ //Will randomlize cookie
   })
 );
@@ -55,7 +55,7 @@ app.use(minify());
 app.use(stylus.middleware(path.join(__dirname, "public")));
 app.use(serveStatic(path.join(__dirname, "public")));
 
-if(process.env.NODE_ENV==='development'){
+if (process.env.NODE_ENV === "development") {
   app.use(function(req, res, next) {
     //console.log(req.sessionID);
     //console.log(req.session);
