@@ -16,7 +16,7 @@ $("form.loginform").submit(function(e) {
       if (data.status === "ok") {
         $("#message").addClass("text-success");
         $("#message").text(data.msg);
-        window.location = "/query";
+        window.location = "/";
       } else {
         $("#message").addClass("text-danger");
         $("#message").text(data.msg);
@@ -63,6 +63,7 @@ function postForm(url) {
 
   return fetch(url, {
     method: "POST",
+    credentials: "same-origin",
     body: formData,
     headers: new Headers({
       "Content-Type": "application/json"
