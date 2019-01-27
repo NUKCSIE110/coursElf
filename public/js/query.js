@@ -15,8 +15,10 @@ function init() {
   });
 
   $(".query .loading").hide();
+  $(document).ready(()=>{
   if (typeof Homepage === "undefined")
-    $(".titleBar .allCourses").addClass("selected");
+   $(".titleBar .allCourses").addClass("selected");
+  },10);
 }
 init();
 

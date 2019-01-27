@@ -1,11 +1,11 @@
 const Homepage = true;
-$(".titleBar .allCourses").click(function() {
+/*$(".titleBar .allCourses").click(function() {
   $(this).addClass("selected");
   $(".content").css("align-items", "flex-start");
   $("#timeline").hide();
   $(".query").show();
   window.history.pushState({}, "", "/query");
-});
+});*/
 
 function init() {
   let width = 400;
