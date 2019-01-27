@@ -58,7 +58,7 @@ app.use(serveStatic(path.join(__dirname, "public")));
 if (process.env.NODE_ENV === "development") {
   app.use(function(req, res, next) {
     //console.log(req.sessionID);
-    //console.log(req.session);
+    console.log(req.session);
     next();
   });
 }
