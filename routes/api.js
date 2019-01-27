@@ -6,8 +6,9 @@ router.route("/courses/:type/:target").get(async function(req, res, next) {
   let { type, target } = req.params;
   type = type.toUpperCase();
   target = target.toUpperCase();
+  console.log(target);
   let result = [];
-  if (target !== "all") {
+  if (target === "ALL") {
     result = await courseModel.find({ dept: type });
   } else {
     result = await courseModel.find({ dept: type, target: target });
