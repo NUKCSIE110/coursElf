@@ -1,6 +1,7 @@
 var express = require("express");
 var elearning = require("./elearning");
 var userModel = require("../models/userModel");
+var sha512 = require("js-sha512").sha512;
 var router = express.Router();
 
 router.get("/login", function(req, res, next) {
@@ -19,22 +20,25 @@ router.post("/login", async function(req, res, next) {
     }
 
     let storedData = await userModel.find({ sid: sid });
-    console.log(storedData);
     if (storedData.length === 0) {
       //New user
       await elearning.check(sid, pw);
       // ^ if login failure occured, it will throw an error
 
-      //launch a scraper
+      //[TODO] launch a scraper
 
       //Create new model
       var newUser = new userModel({
-        sid: req.body.sid,
+        sid: sid,
+        pw: sha512(pw),
         courses: [],
         wishList: []
       });
       await newUser.save();
       storedData = newUser;
+    } else {
+      storedData = storedData[0];
+      if (storedData.pw != sha512(pw)) throw new Error("e平臺我說你打錯密碼了");
     }
     req.session.sid = sid;
     req.loggedin = true;

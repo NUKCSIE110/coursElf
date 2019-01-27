@@ -18,6 +18,7 @@ mongoose
 
 var userSchema = new mongoose.Schema({
   sid: String,
+  pw: String,
   courses: Array,
   wishList: Array
 });
