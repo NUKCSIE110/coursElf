@@ -21,16 +21,23 @@
             display: flex
             justify-content: space-around
             align-items: center
+            span
+                display: block
+                text-align: center
             &.clicked
                 box-shadow: 0 0 0 0 rgba(0,0,0,0)
                 transform: translate(0.25em,0.25em)
             .classID
                 color: #a0a0a0
+                min-width: 4em
+                flex: 1
             .className
                 letter-spacing: 0.15em
+                flex: 3
             .compulsory,.choose
                 line-height: 1.8em
                 min-width: 6em
+                flex: 1
             .compulsory
                 color: steelblue
                 &::before
@@ -53,12 +60,12 @@
                 border-radius: 0.9em
             .teacher
                 min-width: 6em
-                text-align: center
+                flex: 1
                 &::before
                     content: "教授:"
             .time
-                text-align: center
-                min-width: 6em
+                min-width: 4em
+                flex: 1
                 font-size: 0.6em
                 &::before
                     content: "時間"
@@ -94,19 +101,24 @@
             margin-top: 1em
         .selTarget
             margin-top: 1em
-
-@media(max-width: 350px)
     .resultCard
         .compulsory,.choose
             min-width: 3em !important
         .compulsory::before,.choose::before
             font-size: 0px
             border: solid 0px rgba(0,0,0,0) !important
+        .classID
+            font-size: 0.6em
+
+@media(max-width: 380px)
+    .resultCard
         .className
             letter-spacing: 0px !important
         .teacher
             min-width: 4em !important
             &::before
                 font-size: 0px
+        .classID
+            display: none !important
         &.first p
             font-size: 0.9em

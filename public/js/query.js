@@ -39,10 +39,10 @@ function fetchTarget(type) {
       $(newA).data("code", "all");
       $(newA).text("全部班級");
       $(".selTarget .dropdown-menu").append(newA);
-      d.forEach(e => {
+      Object.keys(d).forEach(e => {
         let newA = document.createElement("a");
         $(newA).addClass("dropdown-item");
-        $(newA).text(e);
+        $(newA).text(d[e]);
         $(newA).data("code", e);
         $(".selTarget .dropdown-menu").append(newA);
       });
