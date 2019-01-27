@@ -15,10 +15,10 @@ function init() {
   });
 
   $(".query .loading").hide();
-  $(document).ready(()=>{
-  if (typeof Homepage === "undefined")
-   $(".titleBar .allCourses").addClass("selected");
-  },10);
+  $(document).ready(() => {
+    if (typeof Homepage === "undefined")
+      $(".titleBar .allCourses").addClass("selected");
+  }, 10);
 }
 init();
 
@@ -136,9 +136,8 @@ function fetchResult(type, target) {
         });
         $(".query .result").slideDown(200);
         $(".query .loading").hide();
-        gtag("event", type, {
-          event_category: "list_classes",
-          event_label: target
+        gtag("event", "search", {
+          search_term: `${type} ${target}`
         });
       });
   });
