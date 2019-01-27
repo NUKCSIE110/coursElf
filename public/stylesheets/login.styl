@@ -9,6 +9,11 @@
     letter-spacing: 0.1em
     margin: 2em auto 0 auto
     display: block
+    
+#submit
+    .loading
+        margin-left: 1em
+        animation: flip 1s ease-in-out infinite alternate
 
 .btn-primary
     background: steelblue
@@ -22,3 +27,9 @@
         font-size: 0.7em
     }    
 }
+
+@keyframes flip
+    0%
+        transform: scaleX(1)
+    100%
+        transform: scaleX(-1)
