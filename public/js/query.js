@@ -72,13 +72,7 @@ function fetchResult(type, target) {
         hideAllTooltip();
         $(".query .result").html("");
         d.forEach(e => {
-          let detailUrl = `https://course.nuk.edu.tw/QueryCourse/tcontent.asp?
-              OpenYear=107&Helf=2&Sclass=${e.dept}&Cono=${e.id}`.replace(
-            /[\s\t\n]/g,
-            ""
-          );
-          const weekdays = ["", "一", "二", "三", "四", "五"];
-          e.time = e.time.map(x => `${weekdays[x[0]]}${x[1]}`);
+          e.time = e.time.map(x => `${x[0]}${x[1]}`);
           let detail = `
                 <h5 class="classID">${e.dept + e.id}</h5>
                 <p class="className">${e.name}</p>
@@ -88,16 +82,18 @@ function fetchResult(type, target) {
                 <p class="${e.compulsory ? "compulsory" : "choose"}">
                   ${e.compulsory ? "必修" : "選修"} ${e.point} 學分
                 </p>
-                <p><a href="${detailUrl}"  target="_blank">
+                <p><a href="${e.detailUrl}"  target="_blank">
                   原始課程資料 <i class="fas fa-external-link-alt"></i>
                 </a></p>
           `;
           let content = `
-              <a class="resultCard" data-toggle="tooltip" data-html="true" title='${detail}'>
+              <a class="resultCard"
+                data-class-type="${e.dept}" data-class-id="${e.id}"
+                data-toggle="tooltip" data-html="true" title='${detail}'>
                 <span class="classID">${e.dept + e.id}</span>
                 <span class="className">${e.name}</span>
                 <span class="teacher">${e.teacher}</span>
-                <span class="time">${e.time.join(',')}</span>
+                <span class="time">${e.time.join(",")}</span>
                 <span class="${e.compulsory ? "compulsory" : "choose"}">
                   ${e.point}學分
                 </span>
@@ -120,10 +116,14 @@ function fetchResult(type, target) {
             hideAllTooltip();
             $(this).tooltip("show");
             $(this).addClass("clicked");
+            gtag("event", $(this).data("classType"), {
+              event_category: "show_detail",
+              event_label: $(this).data("classId")
+            });
 
             setTimeout(
               function() {
-                $(this).on('click',function() {
+                $(this).on("click", function() {
                   $(this).tooltip("toggle");
                   $(this).toggleClass("clicked");
                 });
@@ -134,7 +134,10 @@ function fetchResult(type, target) {
         });
         $(".query .result").slideDown(200);
         $(".query .loading").hide();
-        //gtag("event", "search", { search_term: `${type}/${target}` });
+        gtag("event", type, {
+          event_category: "list_classes",
+          event_label: target
+        });
       });
   });
 }
@@ -147,7 +150,7 @@ $(".result").mouseleave(function() {
 
 function hideAllTooltip() {
   $('[data-toggle="tooltip"]').each(function() {
-    $(this).off('click');
+    $(this).off("click");
     $(this).tooltip("hide");
     $(this).removeClass("clicked");
   });

@@ -4,8 +4,11 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var stylus = require("stylus");
-var helmet = require('helmet');
-require('dotenv').load();
+var helmet = require("helmet");
+var serveStatic = require("serve-static");
+var compression = require("compression");
+var minify = require("express-minify");
+require("dotenv").load();
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -19,11 +22,13 @@ app.set("view engine", "pug");
 
 app.use(logger("dev"));
 app.use(helmet());
+app.use(compression());
+app.use(minify());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(stylus.middleware(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(serveStatic(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
