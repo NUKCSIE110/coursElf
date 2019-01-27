@@ -16,6 +16,7 @@ $("form.loginform").submit(function(e) {
       if (data.status === "ok") {
         $("#message").addClass("text-success");
         $("#message").text(data.msg);
+        gtag("event", "login", { method: "elearning" });
         window.location = "/";
       } else {
         $("#message").addClass("text-danger");
