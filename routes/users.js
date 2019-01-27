@@ -41,12 +41,10 @@ router.post("/login", function(req, res, next) {
 });
 
 router.get("/logout", function(req, res, next) {
-  if (req.session.loggedin != true) {
-    res.json({ status: "err", msg: "Are you kidding me?" });
-  } else {
+  if (req.session.loggedin === true) {
     req.session.destroy();
-    res.redirect("/");
   }
+  res.redirect("/");
 });
 
 module.exports = router;
