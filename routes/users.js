@@ -10,6 +10,11 @@ router.get("/login", function(req, res, next) {
   }
 });
 router.post("/login", function(req, res, next) {
+  if (req.body.sid == "" || req.body.pw == "") {
+    res.status(200);
+    res.json({ status: "err", msg: "e平臺我說你打錯密碼了" });
+    return;
+  }
   if (req.session.loggedin || false) {
     res.json({ status: "ok", msg: "get out my way :)" });
     return;
@@ -20,22 +25,18 @@ router.post("/login", function(req, res, next) {
   } else {
     //launch crawer
     let elearningAuth = elearning.check(req.body.sid, req.body.pw);
-    let loggedin = elearningAuth
+    elearningAuth
       .then(() => {
-        return true;
+        req.session.sid = req.body.sid;
+        req.session.loggedin = true;
+        req.session.save(() => {});
+        res.status(200);
+        res.json({ status: "ok", msg: "oh ya" });
       })
       .catch(() => {
-        return false;
+        res.status(200);
+        res.json({ status: "err", msg: "e平臺我說你打錯密碼了" });
       });
-    if (loggedin) {
-      req.session.sid = req.body.sid;
-      req.session.loggedin = true;
-      req.session.save(() => {});
-      res.status(200);
-      res.json({ status: "ok", msg: "oh ya" });
-    } else {
-      res.json({ status: "err", msg: "e平臺我說你打錯密碼了" });
-    }
   }
 });
 
@@ -44,7 +45,7 @@ router.get("/logout", function(req, res, next) {
     res.json({ status: "err", msg: "Are you kidding me?" });
   } else {
     req.session.destroy();
-    res.redirect('/');
+    res.redirect("/");
   }
 });
 

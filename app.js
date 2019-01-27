@@ -55,11 +55,13 @@ app.use(minify());
 app.use(stylus.middleware(path.join(__dirname, "public")));
 app.use(serveStatic(path.join(__dirname, "public")));
 
-app.use(function(req, res, next) {
-  console.log(req.sessionID);
-  console.log(req.session);
-  next();
-});
+if(process.env.NODE_ENV==='development'){
+  app.use(function(req, res, next) {
+    //console.log(req.sessionID);
+    //console.log(req.session);
+    next();
+  });
+}
 
 //Set router
 app.use("/", indexRouter);
