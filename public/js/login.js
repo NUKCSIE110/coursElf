@@ -3,13 +3,36 @@ $(document).ready(() => {
   $(".loginform .loading").hide();
 });
 
-$("#submit").click(function() {
-  for (var i = 1; i < 99999; i++) window.clearInterval(i);
+$("form.loginform").submit(function(e) {
+  e.preventDefault();
   let waitingWords = new ganTalk($("#submit span"));
   waitingWords.update();
   setInterval(() => waitingWords.update(), 2000);
   $(".loginform .loading").show();
-  $(this).attr('disabled','');
+  $(this).prop("disabled", false);
+  postForm("/users/login")
+    .then(data => {
+      $("#message").removeClass();
+      if (data.status === "ok") {
+        $("#message").addClass("text-success");
+        $("#message").text(data.msg);
+        window.location = "/query"
+      } else {
+        $("#message").addClass("text-danger");
+        $("#message").text(data.msg);
+      }
+    })
+    .catch(error => {
+      $("#message").removeClass();
+      $("#message").addClass("text-danger");
+      $("#message").text(error.message);
+    })
+    .finally(() => {
+      for (var i = 1; i < 99999; i++) window.clearInterval(i);
+      $("#submit span").text("開始爬課");
+      $("#submit").prop("disabled", false);
+      $(".loginform .loading").hide();
+    });
   //$(this).removeClass("btn-primary");
   //$(this).addClass("btn-warning");
 });
@@ -31,4 +54,17 @@ class ganTalk {
     $(this.container).text(this.words[this.index]);
     this.index = (this.index + 1) % this.words.length;
   }
+}
+function postForm(url) {
+  const formData = new FormData(document.querySelector("form.loginform"));
+
+  return fetch(url, {
+    method: "POST",
+    body: formData // a FormData will automatically set the 'Content-Type'
+  }).then(r => {
+    if (r.ok) {
+      return r.json();
+    }
+    throw new Error(`${r.statusText} (${r.status})`);
+  });
 }

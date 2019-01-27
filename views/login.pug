@@ -15,7 +15,8 @@ block content
             label(for="pw") 密碼
             input(type="email",class="form-control",id="pw",aria-describedby="noleak",placeholder="e平臺ㄉ密碼")
             small(id="noleak",class="form-text text-muted") 我們對你的密碼沒興趣，所以我們不會儲存他 :D
-        button(type="button", id="submit",class="btn btn-primary")
+        #message
+        button(type="submit", id="submit",class="btn btn-primary")
             span 開始爬課
             i(class="fas fa-hat-wizard fa-lg loading")
         button(type="button",class="btn btn-secondary" disabled) 付費開啓DLC
