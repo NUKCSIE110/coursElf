@@ -47,6 +47,8 @@ body
       &:hover 
         text-decoration: none
         color: #d0d0d0 !important
+      i
+        margin-left: 0.3em
 
 .content
   margin: 3em auto 0 auto
@@ -63,7 +65,7 @@ footer
     font-family: 'VT323', cursive;
     color: white
     display: inline-block
-    margin: 0 auto
+    margin: 0 1em
     line-height: 3em
     &:hover
       color: #f0f0f0
@@ -92,6 +94,10 @@ footer
       height: 3em;
   .titleBar .burger
     display: inline-block
+
+@media(max-width: 520px)
+  footer a.author
+    display: none;
 
 @media (max-width: 350px)
   .titleBar
