@@ -65,3 +65,7 @@ public/stylesheets/*.css
 
 #mochawesome report
 mochawesome-report/
+
+
+# scrap
+scraper/env
