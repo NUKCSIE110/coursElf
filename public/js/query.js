@@ -62,6 +62,7 @@ function fetchTarget(type) {
 
 function fetchResult(type, target) {
   $(".query .loading").show();
+  $(".query")[0].scrollIntoView();
   $(".query .result").slideUp(200, () => {
     fetch(`/api/courses/${type}/${target}`)
       .then(r => {
@@ -146,7 +147,7 @@ function fetchResult(type, target) {
 $(".result").mouseleave(function(event) {
   let resultBox = $(".result")[0].getBoundingClientRect();
   if (
-    event.pageX < resultBox.right +window.scrollX &&
+    event.pageX < resultBox.right + window.scrollX &&
     event.pageX > resultBox.left + window.screenX &&
     event.pageY < resultBox.bottom + window.scrollY &&
     event.pageY > resultBox.top + window.screenY
