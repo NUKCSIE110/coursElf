@@ -41,7 +41,7 @@ router.post("/login", async function(req, res, next) {
       if (storedData.pw != sha512(pw)) throw new Error("e平臺我說你打錯密碼了");
     }
     req.session.sid = sid;
-    req.loggedin = true;
+    req.session.loggedin = true;
     req.session.model = storedData;
     req.session.save(() => {});
     res.status(200);
