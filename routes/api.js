@@ -9,21 +9,10 @@ router.route("/courses/:type/:target").get(async function(req, res, next) {
   console.log(target);
   let result = [];
   if (target === "ALL") {
-    result = await courseModel.find({ dept: type });
+    result = await courseModel.find({ dept: type }).sort('name');
   } else {
-    result = await courseModel.find({ dept: type, target: target });
+    result = await courseModel.find({ dept: type, target: target }).sort('name');
   }
-  let classDetail = {
-    dept: type.toUpperCase(),
-    id: "B051",
-    target: target.toUpperCase(),
-    name: "電腦網路長長長長長長長長長長長長",
-    point: "3",
-    compulsory: true,
-    teacher: "吳俊興",
-    location: "B01-204",
-    time: [[1, 2], [1, 3], [1, 4]]
-  };
 
   //Proccess class detail
   let formatTime = x => {
@@ -56,8 +45,17 @@ router.route("/courses/:type/:target").get(async function(req, res, next) {
   res.json(result);
 });
 router.route("/target/:type").get(function(req, res, next) {
+  let result = [1,2,3,4];
+  let rtVal = {};
+  result.forEach(e=>{
+    rtVal[e] = getTargetName(e);
+  });
   res.status(200);
-  res.json({ 1: "大一", 2: "大二", 3: "大三", 4: "大四" });
+  res.json(rtVal);
 });
+function getTargetName(x){
+  const table =  {1: "大一", 2: "大二", 3: "大三", 4: "大四"}; 
+  return table[x];
+}
 
 module.exports = router;
