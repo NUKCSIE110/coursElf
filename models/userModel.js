@@ -18,8 +18,8 @@ mongoose
 
 var userSchema = new mongoose.Schema({
   sid: String,
-  pw: String,
-  courses: Array,
+  //pw: String,
+  //courses: Array,
   wishList: Array
 });
 let model = mongoose.model("user", userSchema);

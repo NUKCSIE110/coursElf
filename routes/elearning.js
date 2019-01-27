@@ -1,6 +1,6 @@
 var querystring = require("querystring");
 var https = require("https");
-var {PythonShell} = require('python-shell')
+var { PythonShell } = require("python-shell");
 var path = require("path");
 
 var elearningLogin = {
@@ -42,18 +42,20 @@ var elearningLogin = {
       req.end();
     });
   },
-  getDoneCourse: function(sid,pw){
-    return new Promise(function(resolve, reject){
+  getDoneCourse: function(sid, pw) {
+    return new Promise(function(resolve, reject) {
       let options = {
-        mode: 'text',
-        pythonOptions: ['-u'], // get print results in real-time
+        mode: "text",
+        pythonOptions: ["-u"], // get print results in real-time
         scriptPath: path.join(__dirname, "../scraper"),
         args: [sid, pw]
       };
-      PythonShell.run('getDoneCourse.py', options, function (err, results) {
-        if (err) reject(err);
-        // results is an array consisting of messages collected during execution
-        resolve(results);
+      PythonShell.run("getDoneCourse.py", options, function(err, results) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(JSON.parse(results));
+        }
       });
     });
   }

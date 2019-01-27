@@ -20,28 +20,30 @@ router.post("/login", async function(req, res, next) {
       throw new Error("Y0U 4R3 41R3@DY 10GG3D1N, H4CK3R :)");
     }
 
+    await elearning.check(sid, pw);
+    // ^ if login failure occured, it will throw an error
+
     let storedData = await userModel.find({ sid: sid });
     if (storedData.length === 0) {
       //New user
-      await elearning.check(sid, pw);
-      // ^ if login failure occured, it will throw an error
-
-      //[TODO] launch a scraper
-      let doneCourse = await elearning.getDoneCourse(sid, pw);
 
       //Create new model
       var newUser = new userModel({
         sid: sid,
-        pw: sha512(pw),
-        courses: JSON.parse(doneCourse),
+        //pw: sha512(pw),
+        //courses: JSON.parse(doneCourse),
         wishList: []
       });
       await newUser.save();
       storedData = newUser;
     } else {
       storedData = storedData[0];
-      if (storedData.pw != sha512(pw)) throw new Error("e平臺我說你打錯密碼了");
+      //if (storedData.pw != sha512(pw)) throw new Error("e平臺我說你打錯密碼了");
     }
+
+    //launch a scraper
+    req.session.doneCourse = await elearning.getDoneCourse(sid, pw);
+
     req.session.sid = sid;
     req.session.loggedin = true;
     req.session.model = storedData;
