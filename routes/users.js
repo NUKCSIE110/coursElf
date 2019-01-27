@@ -14,6 +14,7 @@ router.get("/login", function(req, res, next) {
 router.post("/login", async function(req, res, next) {
   try {
     let { sid, pw } = req.body;
+    sid = sid.toUpperCase();
     if (sid == "" || pw == "") throw new Error("你的帳號密碼啦");
     if (req.session.loggedin || false) {
       throw new Error("Y0U 4R3 41R3@DY 10GG3D1N, H4CK3R :)");
@@ -26,12 +27,13 @@ router.post("/login", async function(req, res, next) {
       // ^ if login failure occured, it will throw an error
 
       //[TODO] launch a scraper
+      let doneCourse = await elearning.getDoneCourse(sid, pw);
 
       //Create new model
       var newUser = new userModel({
         sid: sid,
         pw: sha512(pw),
-        courses: [],
+        courses: JSON.parse(doneCourse),
         wishList: []
       });
       await newUser.save();
