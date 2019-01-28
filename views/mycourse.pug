@@ -3,6 +3,9 @@ extends layout
 block css
     link(rel="stylesheet", href="/stylesheets/mycourse.css")
 
+block js
+    script(src="/js/mycourse.js")
+
 block content
     .doneCourses
         each item in doneCourses
