@@ -6,31 +6,43 @@ block css
 block js
     script(src="/js/mycourse.js")
 
+mixin courseList(collection)
+    each item in collection
+        div
+            p= item[0]
+            p= item[1]
+            p= item[2]
+                | 學分
+
 block content
-    .doneCourses
-        each item in doneCourses
-            div
-                p= item[0]
-                p= item[1]
-                p= item[2]
-    .pointStat
+    .doneCourse
         ul
-            li 共同必修
+            li 
+                p= `共同必修 ${donePoint.common.p} 學分`
                 ul
-                    li 中文:
-                        span= donePoint.common.chinese
-                    li 英文:
-                        span= donePoint.common.english
-            li 核心通識:
-                span= donePoint.cc
-            li 博雅通識
+                    li
+                        p= `中文 ${donePoint.common.chinese} 學分`
+                        +courseList(doneCourse.common.chinese)
+                    li
+                        p= `英文 ${donePoint.common.english} 學分`
+                        +courseList(doneCourse.common.english)
+            li
+                p= `核心通識 ${donePoint.cc} 學分`
+                +courseList(donePoint.cc)
+            li
+                p= `博雅通識 ${donePoint.by.p} 學分`
                 ul
-                    li 人文科學:
-                        span= donePoint.by.li
-                    li 自然科學:
-                        span= donePoint.by.sc
-                    li 社會科學:
-                        span= donePoint.by.so
-            li 其他:
-                span= donePoint.rest
-            
+                    li
+                        p= `人文科學 ${donePoint.by.li} 學分`
+                        +courseList(doneCourse.by.li)
+                    li
+                        p= `自然科學 ${donePoint.by.sc} 學分`
+                        +courseList(doneCourse.by.sc)
+                    li
+                        p= `社會科學 ${donePoint.by.so} 學分`
+                        +courseList(doneCourse.by.so)
+            li
+                p= `其他 ${donePoint.rest} 學分`
+                +courseList(doneCourse.rest)
+            li
+                p= `總共 ${donePoint.p} 學分`

@@ -68,30 +68,47 @@ router.get("/mycourse", function(req, res, next) {
     res.redirect("/");
   } else {
     let calcPoint = (acc, e) => (acc += parseInt(e[2]));
+    let calcPointOfObj = obj => {
+      obj["p"] = Object.keys(obj).reduce((acc, x) => (acc += obj[x]), 0);
+    };
     let passed = req.session.doneCourse.filter(x => x[3] >= 60);
     let common = passed.filter(x => x[0].match(/^GR.+/));
-    let chinese = common
-      .filter(x => x[1].match(/^中文.+/))
-      .reduce(calcPoint, 0);
-    let english = common
-      .filter(x => x[1].match(/^英語會話與閱讀.+/))
-      .reduce(calcPoint, 0);
+    let chinese = common.filter(x => x[1].match(/^中文.+/));
+    let english = common.filter(x => x[1].match(/^英語會話與閱讀.+/));
     common = { chinese, english };
+    let common_p = {
+      chinese: chinese.reduce(calcPoint, 0),
+      english: english.reduce(calcPoint, 0)
+    };
+    calcPointOfObj(common_p);
 
-    let cc = passed.filter(x => x[0].match(/^CC.+/)).reduce(calcPoint, 0);
+    let cc = passed.filter(x => x[0].match(/^CC.+/));
+    let cc_p = cc.reduce(calcPoint, 0);
 
-    let li = passed.filter(x => x[0].match(/^LI.+/)).reduce(calcPoint, 0);
-    let sc = passed.filter(x => x[0].match(/^SC.+/)).reduce(calcPoint, 0);
-    let so = passed.filter(x => x[0].match(/^SO.+/)).reduce(calcPoint, 0);
+    let li = passed.filter(x => x[0].match(/^LI.+/));
+    let sc = passed.filter(x => x[0].match(/^SC.+/));
+    let so = passed.filter(x => x[0].match(/^SO.+/));
     let by = { li, sc, so };
+    let by_p = {
+      li: li.reduce(calcPoint, 0),
+      sc: sc.reduce(calcPoint, 0),
+      so: so.reduce(calcPoint, 0)
+    };
+    calcPointOfObj(by_p);
 
-    let rest = passed
-      .filter(x => x[0].match(/^(?!GR|CC|LI|SC|SO)/))
-      .reduce(calcPoint, 0);
+    let rest = passed.filter(x => x[0].match(/^(?!GR|CC|LI|SC|SO)/));
+    let rest_p = rest.reduce(calcPoint, 0);
 
-    let donePoint = { common, cc, by, rest };
+    let doneCourse = { common, cc, by, rest };
+    let donePoint = { common: common_p, cc: cc_p, by: by_p, rest: rest_p };
+    donePoint["p"] = passed.reduce(calcPoint, 0);
     console.log(donePoint);
-    res.render("mycourse", { loggedin: req.session.loggedin ,doneCourses: passed, donePoint });
+
+    res.render("mycourse", {
+      loggedin: req.session.loggedin,
+      doneCourse,
+      donePoint
+    });
   }
 });
 
