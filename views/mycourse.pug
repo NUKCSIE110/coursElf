@@ -7,15 +7,17 @@ block js
     script(src="/js/mycourse.js")
 
 mixin courseList(collection)
-    each item in collection
-        div
-            p= item[0]
-            p= item[1]
-            p= item[2]
-                | 學分
+    ul
+        each item in collection
+            li.course
+                p.courseID= item[0]
+                p.courseName= item[1]
+                p.point= `${item[2]} 學分`
+                p.score= `學期成績 ${item[3]}`
 
 block content
     .doneCourse
+        h2 我通過的課
         ul
             li 
                 p= `共同必修 ${donePoint.common.p} 學分`
@@ -44,5 +46,4 @@ block content
             li
                 p= `其他 ${donePoint.rest} 學分`
                 +courseList(doneCourse.rest)
-            li
-                p= `總共 ${donePoint.p} 學分`
+        p.totalPoint= `總共 ${donePoint.p} 學分`

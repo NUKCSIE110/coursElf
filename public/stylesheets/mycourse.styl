@@ -1,11 +1,53 @@
 .content
     padding-top: 10vh;
 .doneCourse
+    h2
+        font-size: 1.5rem
+        letter-spacing: 0.15em
+    &>ul>li
+        color: #212529;
+        text-decoration: none;
+        min-height: 5em
+        margin-top: 1.5em
+        width: 100%
+        background-color: white
+        transition: all 1s
+        box-shadow: 0.25em 0.25em 0.5em 0em rgba(0,0,0,0.5)
+        padding: 1em
+        box-sizing: border-box
+        //display: flex
+        //justify-content: space-around
+        //align-items: center
+        
     li
-        &>p
+        &:not(.course)>p
             margin: 1em 0
-        ul,div
-            margin-left: 1em
-        div
+            font-weight: 500
+        ul,&.course
+            margin-left: 2%
+        &.course
             display: flex
             justify-content: space-between
+            text-align: center 
+            .courseID
+                color: #a0a0a0
+                min-width: 4em
+                flex: 1
+            .courseName
+                text-align: left
+                letter-spacing: 0.15em
+                flex: 3
+            .point
+                min-width: 3em
+                flex: 1
+            .score
+                min-width: 7em
+                flex: 1
+    .totalPoint
+        text-align: right
+        font-size: 1.2em
+        letter-spacing: 0.15em
+
+@media(max-width: 600px)
+    .doneCourse p.score
+        display: none
