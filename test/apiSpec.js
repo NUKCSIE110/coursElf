@@ -71,7 +71,8 @@ describe("GET /api/target/:type", () => {
         done();
       });
   });
-  it("Response should be an array", () => {
-    result.should.be.Array();
+  it("Response should be an object", () => {
+    result.should.be.Object();
+    result.should.has.keys("1", "2", "3", "4");
   });
 });
