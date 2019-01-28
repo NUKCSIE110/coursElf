@@ -109,12 +109,14 @@ router.get("/mycourse", function(req, res, next) {
     donePoint["p"] = passed.reduce(calcPoint, 0);
 
     let uncommitCourse = req.session.doneCourse.filter(x => x[3] === "未送");
+    let failedCourse = req.session.doneCourse.filter(x => x[3] < 60);
 
     res.render("mycourse", {
       loggedin: req.session.loggedin,
       doneCourse,
       donePoint,
-      uncommitCourse
+      uncommitCourse,
+      failedCourse
     });
   }
 });

@@ -52,3 +52,8 @@ block content
             ul
                 li.uncommit
                     +courseList(uncommitCourse)
+        if(failedCourse.length!==0)
+            h2 沒有通過的課
+            ul
+                li.failed
+                    +courseList(failedCourse)
