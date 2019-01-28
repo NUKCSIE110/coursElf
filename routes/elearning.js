@@ -30,7 +30,7 @@ var elearningLogin = {
         ) {
           resolve(true);
         } else {
-          reject({ message: "e平臺我說你打錯密碼了" });
+          reject({ message: "e平臺跟我說你打錯密碼了" });
         }
       });
 

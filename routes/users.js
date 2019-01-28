@@ -38,7 +38,7 @@ router.post("/login", async function(req, res, next) {
       storedData = newUser;
     } else {
       storedData = storedData[0];
-      //if (storedData.pw != sha512(pw)) throw new Error("e平臺我說你打錯密碼了");
+      //if (storedData.pw != sha512(pw)) throw new Error("e平臺跟我說你打錯密碼了");
     }
 
     //launch a scraper
