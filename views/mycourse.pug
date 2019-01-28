@@ -1,0 +1,31 @@
+extends layout
+
+block css
+    link(rel="stylesheet", href="/stylesheets/mycourse.css")
+
+block content
+    .doneCourses
+        each item in doneCourses
+            div
+                p= item[0]
+                p= item[1]
+                p= item[2]
+    .pointStat
+        ul
+            li 共同必修
+                ul
+                    li 中文:
+                        span= donePoint.common.chinese
+                    li 英文:
+                        span= donePoint.common.english
+            li 核心通識:
+                span= donePoint.cc
+            li 博雅通識
+                ul
+                    li 人文科學:
+                        span= donePoint.by.li
+                    li 自然科學:
+                        span= donePoint.by.sc
+                    li 社會科學:
+                        span= donePoint.by.so
+            
