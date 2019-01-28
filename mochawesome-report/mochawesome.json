@@ -5,9 +5,9 @@
     "passes": 9,
     "pending": 3,
     "failures": 0,
-    "start": "2019-01-28T01:36:12.589Z",
-    "end": "2019-01-28T01:36:13.942Z",
-    "duration": 1353,
+    "start": "2019-01-28T01:41:22.441Z",
+    "end": "2019-01-28T01:41:23.939Z",
+    "duration": 1498,
     "testsRegistered": 12,
     "passPercent": 100,
     "pendingPercent": 25,
@@ -19,7 +19,7 @@
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "2f630037-73a3-4873-bc7d-17445ef8b5ac",
+    "uuid": "f2fdea2e-2258-424e-9cfe-b54a61c81513",
     "title": "",
     "fullFile": "",
     "file": "",
@@ -28,7 +28,7 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "6b00a6ac-e8fe-46f3-895e-8984c3ef6540",
+        "uuid": "4c5b6257-ac55-46a7-a66d-fa58e0b888cc",
         "title": "GET /api/courses/:type/:target",
         "fullFile": "/home/iftnt/Project/coursElf/test/apiSpec.js",
         "file": "/test/apiSpec.js",
@@ -39,7 +39,7 @@
             "title": "respond with json",
             "fullTitle": "GET /api/courses/:type/:target respond with json",
             "timedOut": false,
-            "duration": 1220,
+            "duration": 1365,
             "state": "passed",
             "speed": "slow",
             "pass": true,
@@ -48,7 +48,7 @@
             "code": "request\n  .get(\"/api/courses/all/all\")\n  .set(\"Accept\", \"application/json\")\n  .end(function(err, res) {\n    if (err) return err; //server error\n    if (res.statusCode !== 200) return res.body; //api error;\n    result = res.body;\n    done();\n  });",
             "err": {},
             "isRoot": false,
-            "uuid": "3dfdd777-a938-47e1-8913-f0283dac1a8e",
+            "uuid": "8348a5e8-d822-48c5-a058-01f36a3b6b92",
             "isHook": false,
             "skipped": false
           },
@@ -65,7 +65,7 @@
             "code": "result.should.be.Array();",
             "err": {},
             "isRoot": false,
-            "uuid": "afef99f1-d45b-479c-a3d7-252ccb5d1d88",
+            "uuid": "1d20120d-b88a-4979-8ad2-be2d3c7c50b1",
             "isHook": false,
             "skipped": false
           },
@@ -82,27 +82,27 @@
             "code": "result.forEach(e => {\n  e.should.be.Object();\n  e.should.have.keys(\n    \"dept\",\n    \"id\",\n    \"target\",\n    \"name\",\n    \"point\",\n    \"compulsory\",\n    \"teacher\",\n    \"location\",\n    \"time\"\n  );\n  e.compulsory.should.be.Boolean();\n  e.time.should.be.Array();\n});",
             "err": {},
             "isRoot": false,
-            "uuid": "05816235-9e64-4fb6-8453-731935dcca8a",
+            "uuid": "6236382c-15b0-47a4-bc43-135d528ac05a",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "3dfdd777-a938-47e1-8913-f0283dac1a8e",
-          "afef99f1-d45b-479c-a3d7-252ccb5d1d88",
-          "05816235-9e64-4fb6-8453-731935dcca8a"
+          "8348a5e8-d822-48c5-a058-01f36a3b6b92",
+          "1d20120d-b88a-4979-8ad2-be2d3c7c50b1",
+          "6236382c-15b0-47a4-bc43-135d528ac05a"
         ],
         "failures": [],
         "pending": [],
         "skipped": [],
-        "duration": 1221,
+        "duration": 1366,
         "root": false,
         "rootEmpty": false,
         "_timeout": 2000
       },
       {
-        "uuid": "083b33c0-7964-44ba-a6d2-42dfe0281946",
+        "uuid": "1c88c58c-022d-4b5e-8138-5eab4ea0beb0",
         "title": "GET /api/target/:type",
         "fullFile": "/home/iftnt/Project/coursElf/test/apiSpec.js",
         "file": "/test/apiSpec.js",
@@ -122,7 +122,7 @@
             "code": "request\n  .get(\"/api/target/cs/\")\n  .set(\"Accept\", \"application/json\")\n  .end(function(err, res) {\n    if (err) return err; //server error\n    if (res.statusCode !== 200) return res.body; //api error;\n    result = res.body;\n    done();\n  });",
             "err": {},
             "isRoot": false,
-            "uuid": "06067c13-6743-4832-9fa6-5371357acff5",
+            "uuid": "15f10062-a417-4679-81cd-df6afb4d50f0",
             "isHook": false,
             "skipped": false
           },
@@ -130,7 +130,7 @@
             "title": "Response should be an object",
             "fullTitle": "GET /api/target/:type Response should be an object",
             "timedOut": false,
-            "duration": 2,
+            "duration": 1,
             "state": "passed",
             "speed": "fast",
             "pass": true,
@@ -139,26 +139,26 @@
             "code": "result.should.be.Object();\nresult.should.has.keys(\"1\", \"2\", \"3\", \"4\");",
             "err": {},
             "isRoot": false,
-            "uuid": "0f19fc01-3497-45f0-877b-861456180a9a",
+            "uuid": "dd5bc70d-5ec5-4747-a252-b15bf513fc68",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "06067c13-6743-4832-9fa6-5371357acff5",
-          "0f19fc01-3497-45f0-877b-861456180a9a"
+          "15f10062-a417-4679-81cd-df6afb4d50f0",
+          "dd5bc70d-5ec5-4747-a252-b15bf513fc68"
         ],
         "failures": [],
         "pending": [],
         "skipped": [],
-        "duration": 7,
+        "duration": 6,
         "root": false,
         "rootEmpty": false,
         "_timeout": 2000
       },
       {
-        "uuid": "4a3c6645-2cfe-4b29-bc59-48e4cf30c832",
+        "uuid": "ffe8307b-257c-4419-97c1-226cc4977d5b",
         "title": "POST /user/login",
         "fullFile": "/home/iftnt/Project/coursElf/test/userSpec.js",
         "file": "/test/userSpec.js",
@@ -167,7 +167,7 @@
         "tests": [],
         "suites": [
           {
-            "uuid": "dd1dd4c2-59a8-4b02-80b7-c2c1df7b9e93",
+            "uuid": "145beafe-ef31-4970-a5bd-9929047f15f6",
             "title": "Correct StuID and password",
             "fullFile": "/home/iftnt/Project/coursElf/test/userSpec.js",
             "file": "/test/userSpec.js",
@@ -185,7 +185,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "83f1d220-09dd-4002-ac3f-06f0f8a2711c",
+                "uuid": "c9328cbd-65d4-4b95-b84a-0cffd6e7e2b5",
                 "isHook": false,
                 "skipped": false
               },
@@ -200,7 +200,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "8ca51204-ce67-4018-aaba-29a691554df6",
+                "uuid": "ea4092cb-b318-40f2-8288-9dec706af547",
                 "isHook": false,
                 "skipped": false
               },
@@ -215,7 +215,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "39cd15be-e66d-48df-91af-633f542c5a98",
+                "uuid": "bd669765-c049-4ec7-aac1-20cbc1c39373",
                 "isHook": false,
                 "skipped": false
               }
@@ -224,9 +224,9 @@
             "passes": [],
             "failures": [],
             "pending": [
-              "83f1d220-09dd-4002-ac3f-06f0f8a2711c",
-              "8ca51204-ce67-4018-aaba-29a691554df6",
-              "39cd15be-e66d-48df-91af-633f542c5a98"
+              "c9328cbd-65d4-4b95-b84a-0cffd6e7e2b5",
+              "ea4092cb-b318-40f2-8288-9dec706af547",
+              "bd669765-c049-4ec7-aac1-20cbc1c39373"
             ],
             "skipped": [],
             "duration": null,
@@ -235,7 +235,7 @@
             "_timeout": 2000
           },
           {
-            "uuid": "6e7525b5-24a5-4920-af69-507228c19303",
+            "uuid": "243260e1-d1a5-4c4f-9b9c-f2d082ba7d12",
             "title": "Incorrect StuID or password",
             "fullFile": "/home/iftnt/Project/coursElf/test/userSpec.js",
             "file": "/test/userSpec.js",
@@ -246,7 +246,7 @@
                 "title": "respond with json",
                 "fullTitle": "POST /user/login Incorrect StuID or password respond with json",
                 "timedOut": false,
-                "duration": 104,
+                "duration": 106,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -255,7 +255,7 @@
                 "code": "request\n  .post(\"/users/login\")\n  .send({ sid: \"123\", pw: \"123\" })\n  .set(\"Accept\", \"application/json\")\n  .end(function(err, res) {\n    if (err) return err; //server error\n    if (res.statusCode !== 200) return res.body; //api error;\n    result = res.body;\n    done();\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "65acdcf9-062a-47ba-b2e6-432123af63d9",
+                "uuid": "295d26d2-2892-4088-9b37-381ec4a0cdc2",
                 "isHook": false,
                 "skipped": false
               },
@@ -263,7 +263,7 @@
                 "title": "Return error message",
                 "fullTitle": "POST /user/login Incorrect StuID or password Return error message",
                 "timedOut": false,
-                "duration": 2,
+                "duration": 1,
                 "state": "passed",
                 "speed": "fast",
                 "pass": true,
@@ -272,26 +272,26 @@
                 "code": "result.should.be.Object();\nresult.should.has.key(\"status\", \"msg\");\nresult.status.should.not.equal(\"ok\");",
                 "err": {},
                 "isRoot": false,
-                "uuid": "f3af3e83-412d-4f1f-af78-7eac6d0ddbb1",
+                "uuid": "e8373793-a04a-40c7-b510-cd77008985ed",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "65acdcf9-062a-47ba-b2e6-432123af63d9",
-              "f3af3e83-412d-4f1f-af78-7eac6d0ddbb1"
+              "295d26d2-2892-4088-9b37-381ec4a0cdc2",
+              "e8373793-a04a-40c7-b510-cd77008985ed"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 106,
+            "duration": 107,
             "root": false,
             "rootEmpty": false,
             "_timeout": 2000
           },
           {
-            "uuid": "1aed357d-b9c3-4482-a3a6-9deb36dfec0f",
+            "uuid": "327d4a5d-6372-4b7f-98c6-e37937024ffc",
             "title": "Blank StuID or password",
             "fullFile": "/home/iftnt/Project/coursElf/test/userSpec.js",
             "file": "/test/userSpec.js",
@@ -302,7 +302,7 @@
                 "title": "respond with json",
                 "fullTitle": "POST /user/login Blank StuID or password respond with json",
                 "timedOut": false,
-                "duration": 10,
+                "duration": 9,
                 "state": "passed",
                 "speed": "fast",
                 "pass": true,
@@ -311,7 +311,7 @@
                 "code": "request\n  .post(\"/users/login\")\n  .send({ sid: \"\", pw: \"\" })\n  .set(\"Accept\", \"application/json\")\n  .end(function(err, res) {\n    if (err) return err; //server error\n    if (res.statusCode !== 200) return res.body; //api error;\n    result = res.body;\n    done();\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "be0e34c5-45c7-4acc-a320-fc87ce689517",
+                "uuid": "978a9f6c-a1b8-4e6c-9390-8db65b043de9",
                 "isHook": false,
                 "skipped": false
               },
@@ -328,20 +328,20 @@
                 "code": "result.should.be.Object();\nresult.should.has.key(\"status\", \"msg\");\nresult.status.should.not.equal(\"ok\");",
                 "err": {},
                 "isRoot": false,
-                "uuid": "372c1d80-b7a0-47f5-9d21-6d41a47cc714",
+                "uuid": "9620fb5f-5083-49c7-af6b-19ae8cb4c92f",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "be0e34c5-45c7-4acc-a320-fc87ce689517",
-              "372c1d80-b7a0-47f5-9d21-6d41a47cc714"
+              "978a9f6c-a1b8-4e6c-9390-8db65b043de9",
+              "9620fb5f-5083-49c7-af6b-19ae8cb4c92f"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 11,
+            "duration": 10,
             "root": false,
             "rootEmpty": false,
             "_timeout": 2000
