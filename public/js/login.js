@@ -30,7 +30,7 @@ $("form.loginform").submit(function(e) {
     })
     .finally(() => {
       for (var i = 1; i < 99999; i++) window.clearInterval(i);
-      $("#submit span").text("開始爬課");
+      $("#submit span").text("小精靈動起來");
       $("#submit").prop("disabled", false);
       $(".loginform .loading").hide();
     });
