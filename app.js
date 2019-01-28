@@ -81,9 +81,13 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  if (process.env.NODE_ENV === "development") {
+    res.render("error");
+  } else {
+    res.render("error_production");
+  }
 });
 
-console.log(process.env.DB_LOC);
+console.log(process.env.NODE_ENV);
 
 module.exports = app;
