@@ -17,8 +17,8 @@ router.route("/courses/:type/:target").get(async function(req, res, next) {
   //Proccess class detail
   let formatTime = x => {
     const weekdays = ["", "一", "二", "三", "四", "五", "六", "日"];
-    if (x[1] == 0) x[1] = "午";
-    if (x[1] > 4 && x[1] < 5) x[1] = "早";
+    if (x[1] == 0) x[1] = "早";
+    if (x[1] > 4 && x[1] < 5) x[1] = "午";
     return [weekdays[x[0]], x[1]];
   };
   result = result.map(_e => {
