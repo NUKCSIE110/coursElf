@@ -25,7 +25,8 @@ var userSchema = new mongoose.Schema({
   compulsory: Boolean,
   teacher: String,
   location: String,
-  time: Array
+  time: Array,
+  limit: Array
 });
 let model = mongoose.model("course", userSchema);
 
