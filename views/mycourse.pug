@@ -47,3 +47,7 @@ block content
                 p= `其他 ${donePoint.rest} 學分`
                 +courseList(doneCourse.rest)
         p.totalPoint= `總共 ${donePoint.p} 學分`
+        h2 還沒送成績的課
+        ul
+            li.uncommit
+                +courseList(uncommitCourse)

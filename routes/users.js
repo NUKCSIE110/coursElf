@@ -72,6 +72,8 @@ router.get("/mycourse", function(req, res, next) {
       obj["p"] = Object.keys(obj).reduce((acc, x) => (acc += obj[x]), 0);
     };
     let passed = req.session.doneCourse.filter(x => x[3] >= 60);
+
+    //共同必修
     let common = passed.filter(x => x[0].match(/^GR.+/));
     let chinese = common.filter(x => x[1].match(/^中文.+/));
     let english = common.filter(x => x[1].match(/^英語會話與閱讀.+/));
@@ -82,9 +84,11 @@ router.get("/mycourse", function(req, res, next) {
     };
     calcPointOfObj(common_p);
 
+    //核心通識
     let cc = passed.filter(x => x[0].match(/^CC.+/));
     let cc_p = cc.reduce(calcPoint, 0);
 
+    //博雅通識
     let li = passed.filter(x => x[0].match(/^LI.+/));
     let sc = passed.filter(x => x[0].match(/^SC.+/));
     let so = passed.filter(x => x[0].match(/^SO.+/));
@@ -96,18 +100,21 @@ router.get("/mycourse", function(req, res, next) {
     };
     calcPointOfObj(by_p);
 
+    //剩餘學分
     let rest = passed.filter(x => x[0].match(/^(?!GR|CC|LI|SC|SO)/));
     let rest_p = rest.reduce(calcPoint, 0);
 
     let doneCourse = { common, cc, by, rest };
     let donePoint = { common: common_p, cc: cc_p, by: by_p, rest: rest_p };
     donePoint["p"] = passed.reduce(calcPoint, 0);
-    console.log(donePoint);
+
+    let uncommitCourse = req.session.doneCourse.filter(x => x[3] === "未送");
 
     res.render("mycourse", {
       loggedin: req.session.loggedin,
       doneCourse,
-      donePoint
+      donePoint,
+      uncommitCourse
     });
   }
 });
