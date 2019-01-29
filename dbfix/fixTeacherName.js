@@ -2,28 +2,23 @@ require("dotenv").load({ path: "../.env" });
 const courseModel = require("../models/courseModel");
 
 let fixs = [
-  { from: /^童士��$/, to: "童士恒", fixed: false },
-  { from: /^童士��業界教師$/, to: "童士恒業界教師", fixed: false },
-  { from: /^康.+銘$/, to: "康倈銘", fixed: false },
-  { from: /^黃.+蔚$/, to: "黃冸蔚", fixed: false },
-  { from: /^王�痗�$/, to: "王恒隆", fixed: false },
-  {
-    from: /^林順富楊文仁王�痗�高佑靈溫秋明葛孟杰黃永森陳彥澄楊佳寧黃重期鄭竣亦$/,
-    to: "林順富楊文仁王恒隆高佑靈溫秋明葛孟杰黃永森陳彥澄楊佳寧黃重期鄭竣亦",
-    fixed: false
-  }
+  { from: /童士��/g, to: "童士恒" },
+  { from: /康�Y銘/g, to: "康倈銘" },
+  { from: /黃�~蔚/g, to: "黃冸蔚" },
+  { from: /王�痗�/g, to: "王恒隆" }
 ];
 
 (async () => {
   for (fix of fixs) {
-    if (fix.fixed === true) continue;
     let result = await courseModel.find({ teacher: fix.from });
     console.log(result);
     for (i of result) {
       console.log(i);
-      i.teacher = fix.to;
+      i.teacher = i.teacher.replace(fix.from, fix.to);
+      console.log(i.teacher);
       await i.save();
       console.log(fix.to);
     }
   }
+  console.log("done");
 })();

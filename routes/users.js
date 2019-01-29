@@ -2,6 +2,7 @@ var express = require("express");
 var elearning = require("./elearning");
 var userModel = require("../models/userModel");
 var sha512 = require("js-sha512").sha512;
+var deptTable = require("../scraper/dept.json");
 var router = express.Router();
 
 router.get("/login", function(req, res, next) {
@@ -45,6 +46,7 @@ router.post("/login", async function(req, res, next) {
     req.session.doneCourse = await elearning.getDoneCourse(sid, pw);
 
     req.session.sid = sid;
+    req.session.dept = deptTable[sid.slice(4, 6)];
     req.session.loggedin = true;
     req.session.model = storedData;
     req.session.save(() => {});
@@ -102,14 +104,36 @@ router.get("/mycourse", function(req, res, next) {
     };
     calcPointOfObj(by_p);
 
+    // 系必修/系選修
+    let dept = passed.filter(x =>
+      x[0].match(new RegExp(`^${req.session.dept[0]}.+`))
+    );
+    let dept_compulsory = dept.filter(x => x[4]);
+    let dept_choose = dept.filter(x => !x[4]);
+    dept = { compulsory: dept_compulsory, choose: dept_choose };
+    let dept_p = {
+      compulsory: dept_compulsory.reduce(calcPoint, 0),
+      choose: dept_choose.reduce(calcPoint, 0)
+    };
+
     //剩餘學分
-    let rest = passed.filter(x => x[0].match(/^(?!GR|CC|LI|SC|SO)/));
+    let rest = passed.filter(x =>
+      x[0].match(new RegExp(`^(?!GR|CC|LI|SC|SO|${req.session.dept[0]})`))
+    );
     let rest_p = rest.reduce(calcPoint, 0);
 
-    let doneCourse = { common, cc, by, rest };
-    let donePoint = { common: common_p, cc: cc_p, by: by_p, rest: rest_p };
+    //===指揮挺組合===
+    let doneCourse = { common, cc, by, dept, rest };
+    let donePoint = {
+      common: common_p,
+      cc: cc_p,
+      by: by_p,
+      dept: dept_p,
+      rest: rest_p
+    };
     donePoint["p"] = passed.reduce(calcPoint, 0);
 
+    //未送成績和棄選的
     let uncommitCourse = req.session.doneCourse.filter(x => x[3] === "未送");
     let failedCourse = req.session.doneCourse.filter(x => x[3] < 60);
 

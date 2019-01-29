@@ -47,8 +47,15 @@ block content
                         p= `社會科學 ${donePoint.by.so} 學分`
                         +courseList(doneCourse.by.so)
             li
-                p= `其他 ${donePoint.rest} 學分`
-                +courseList(doneCourse.rest)
+                p= `系必修 ${donePoint.dept.compulsory} 學分`
+                +courseList(doneCourse.dept.compulsory)
+                if(doneCourse.dept.choose.length!==0)
+                    p= `系選修 ${donePoint.dept.choose} 學分`
+                    +courseList(doneCourse.dept.choose)
+                if(doneCourse.rest.length!==0)
+                    p= `其他 ${donePoint.rest} 學分`
+                    +courseList(doneCourse.rest)
+
         p.totalPoint= `總共 ${donePoint.p} 學分`
         if(uncommitCourse.length!==0)
             h2 還沒送成績的課
