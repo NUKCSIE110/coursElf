@@ -1948,9 +1948,9 @@
     ]
 }, {
     "dept": "GR",
-    "id": "A1C1",
+    "id": "A1CA",
     "target": "1",
-    "name": " 英語會話與閱讀(上)：初階班",
+    "name": " 英語會話與閱讀(下)：初階班",
     "point": "2",
     "limit": [],
     "compulsory": true,
@@ -1959,20 +1959,6 @@
     "time": [
         [1, 5],
         [1, 6]
-    ]
-}, {
-    "dept": "GR",
-    "id": "A1C7",
-    "target": "1",
-    "name": " 英語會話與閱讀(上)：初階班",
-    "point": "2",
-    "limit": [],
-    "compulsory": true,
-    "teacher": "王靜嫻",
-    "location": "B01-109",
-    "time": [
-        [1, 7],
-        [1, 8]
     ]
 }, {
     "dept": "GR",
@@ -2043,6 +2029,20 @@
     "time": [
         [1, 5],
         [1, 6]
+    ]
+}, {
+    "dept": "GR",
+    "id": "A1CG",
+    "target": "1",
+    "name": " 英語會話與閱讀(下)：初階班",
+    "point": "2",
+    "limit": [],
+    "compulsory": true,
+    "teacher": "王靜嫻",
+    "location": "B01-109",
+    "time": [
+        [1, 7],
+        [1, 8]
     ]
 }, {
     "dept": "GR",
@@ -4402,6 +4402,20 @@
     "id": "A61B",
     "target": "1",
     "name": " 初級泰語 II",
+    "point": "2",
+    "limit": [],
+    "compulsory": false,
+    "teacher": "潘婉玲",
+    "location": "M01-206",
+    "time": [
+        [2, 7],
+        [2, 8]
+    ]
+}, {
+    "dept": "EL",
+    "id": "A61D",
+    "target": "1",
+    "name": " 高級泰語 I",
     "point": "2",
     "limit": [],
     "compulsory": false,
@@ -8126,20 +8140,6 @@
     ]
 }, {
     "dept": "EL",
-    "id": "B61B",
-    "target": "2",
-    "name": " 中級泰語Ⅱ",
-    "point": "2",
-    "limit": [],
-    "compulsory": true,
-    "teacher": "潘婉玲",
-    "location": "M01-206",
-    "time": [
-        [2, 5],
-        [2, 6]
-    ]
-}, {
-    "dept": "EL",
     "id": "C03B",
     "target": "2",
     "name": " 中級韓語Ⅱ",
@@ -10080,11 +10080,11 @@
     "limit": ["A10471", "A10571", "A10671"],
     "compulsory": false,
     "teacher": "陳榮泰",
-    "location": "M01-208",
+    "location": "M01-206",
     "time": [
-        [3, 2],
-        [3, 3],
-        [3, 4]
+        [4, 5],
+        [4, 6],
+        [4, 7]
     ]
 }, {
     "dept": "EE",
@@ -12119,6 +12119,21 @@
         [3, 5],
         [3, 6],
         [3, 7]
+    ]
+}, {
+    "dept": "AM",
+    "id": "C514",
+    "target": "3",
+    "name": " 基礎個體經濟學",
+    "point": "3",
+    "limit": [],
+    "compulsory": false,
+    "teacher": "蔡佳妤",
+    "location": "M01-419",
+    "time": [
+        [4, 2],
+        [4, 3],
+        [4, 4]
     ]
 }, {
     "dept": "AM",
@@ -15993,7 +16008,7 @@
     "point": "3",
     "limit": [],
     "compulsory": false,
-    "teacher": "外校老師",
+    "teacher": "陳佳妍",
     "location": "B01-202",
     "time": [
         [2, 2],
