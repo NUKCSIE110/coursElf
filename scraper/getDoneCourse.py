@@ -13,9 +13,9 @@ r.encoding = 'big5'
 soup = bs4.BeautifulSoup(r.text,'html.parser')
 soup = soup.select('table[border="1"] tr[align="center"] td')
 for i in range(int(len(soup)/7)):
-    doneCourse.append([soup[i*7].text,soup[i*7+1].text,soup[i*7+2].text,soup[i*7+5].text])
+    doneCourse.append([soup[i*7].text,soup[i*7+1].text,soup[i*7+2].text,soup[i*7+5].text,soup[i*7+3].text])
 # for r in doneCourse:
 #     print(r)
 print(json.dumps(doneCourse, ensure_ascii=False).encode("utf8",errors='ignore').decode("utf8",errors='ignore'))
-#with open('doneCourse.json','w',encoding='utf8') as web:
+# with open('doneCourse.json','w',encoding='utf8') as web:
 #    web.write(json.dumps(doneCourse, ensure_ascii=False).encode("utf8",errors='ignore').decode("utf8",errors='ignore'))
