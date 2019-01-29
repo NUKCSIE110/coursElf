@@ -40,25 +40,26 @@ deptID = {
     '資訊工程學系':'****55'
     }
 #使用chrome的webdriver
-data = '<tr><td+width=""33%"">開課學年：107　　開課學期：第2學期</td><td+width=""33%"">開課部別：大學部</td><td+width=""34%"">開課系所：無</td></tr><tr><td+width=""33%"">開課班級：無</td><td+width=""33%"">授課教師：無</td><td+width=""34%"">上課時間：無</td></tr>'
-req = requests.post('https://course.nuk.edu.tw/QueryCourse/QueryResult.asp', data = {'Condition':data,'Flag': 1,'OpenYear': 107,'Helf': 2,'Pclass': 'A','Sclass': '','Yclass': '','SirName': '','Sirno': '','WeekDay': '','Card': '','Subject': '','Language': '','Pre_Cono': '','Coname': ''})
+currentYear = 107
+currentSemester = 2
+coreGeneralEduV2 = {} # 核心通識分類
+data = '<tr><td+width=""33%"">開課學年：' + str(currentYear) + '　　開課學期：第' + str(currentSemester) + '學期</td><td+width=""33%"">開課部別：大學部</td><td+width=""34%"">開課系所：無</td></tr><tr><td+width=""33%"">開課班級：無</td><td+width=""33%"">授課教師：無</td><td+width=""34%"">上課時間：無</td></tr>'
+req = requests.post('https://course.nuk.edu.tw/QueryCourse/QueryResult.asp', data = {'Condition':data,'Flag': 1,'OpenYear': currentYear,'Helf': currentSemester,'Pclass': 'A','Sclass': '','Yclass': '','SirName': '','Sirno': '','WeekDay': '','Card': '','Subject': '','Language': '','Pre_Cono': '','Coname': ''})
 req.encoding = 'big5'
 # print(req.text)
 soup = bs4.BeautifulSoup(req.text,'html.parser')
 soup = soup.find_all('tr')
 # print(soup.prettify())
 i = 0
-
 all_course = [] #總課表
-coreGeneralEdu = [] # 核心通識分類
+
+# coreGeneralEdu = [] # 核心通識分類
 
 for ele in soup:
     if i<=3:
         i+=1
         continue
     tdSet = ele.find_all('td')
-    
-    # print(ele.text.split(' '))
     tempCourse = {}
     tempCourse['dept'] = tdSet[0].text.upper()
     tempCourse['id'] = tdSet[1].text.upper()
@@ -90,7 +91,7 @@ for ele in soup:
     tempCourse['time'] = course_time
     if '限修' in tdSet[21].text:
         limitList = ''
-        limitReq = requests.get('https://course.nuk.edu.tw/QueryCourse/Limit.asp?OpenYear=107&Helf=2&Sclass='+tempCourse['dept']+'&Cono='+tempCourse['id'])
+        limitReq = requests.get('https://course.nuk.edu.tw/QueryCourse/Limit.asp?OpenYear='+currentYear+'&Helf='+currentSemester+'&Sclass='+tempCourse['dept']+'&Cono='+tempCourse['id'])
         limitReq.encoding = 'big5'
         limitSoup = bs4.BeautifulSoup(limitReq.text, 'html.parser')
         limitSoup = limitSoup.select('table[border="0"] td[width="80%"]')
@@ -112,20 +113,22 @@ for ele in soup:
         tempCourse['limit'] = limitList.split(';')[:-1]
     all_course.append(tempCourse)
     # print(all_course)
-for ele in all_course:
-    # print(ele['dept'])
-    if ele['dept'] == 'CC':
-        # print(ele['id'])
-        infoUrl = 'https://course.nuk.edu.tw/QueryCourse/tcontent.asp?OpenYear=107&Helf=2&Sclass=CC&Cono=' + ele['id']
-        CCinfo = requests.get(infoUrl)
-        CCinfo.encoding = 'big5'
-        CCinfoSoup = bs4.BeautifulSoup(CCinfo.text,'html.parser')
-        # td[11]是通識分類 取出之後為"科學素養－科學素養" 再將其切割為"科學素養"
-        CCinfoSoup = CCinfoSoup.find_all('td')[11].text.split('－')[0]
-        coreGeneralEdu.append(['CC'+ele['id'],ele['name'], CCinfoSoup])
+# for ele in all_course:
+#     # print(ele['dept'])
+#     if ele['dept'] == 'CC':
+#         # print(ele['id'])
+#         infoUrl = 'https://course.nuk.edu.tw/QueryCourse/tcontent.asp?OpenYear=' + str(y) + '&Helf=' + str(semester) + '&Sclass=CC&Cono=' + ele['id']
+#         CCinfo = requests.get(infoUrl)
+#         CCinfo.encoding = 'big5'
+#         CCinfoSoup = bs4.BeautifulSoup(CCinfo.text,'html.parser')
+#         # td[11]是通識分類 取出之後為"科學素養－科學素養" 再將其切割為"科學素養"
+#         CCinfoSoup = CCinfoSoup.find_all('td')[11].text.split('－')[0]
+#         coreGeneralEduV2['CC'+ele['id'] +'Y'+str(y) + str(semester)] = [ele['name'].strip(), CCinfoSoup]
+        # coreGeneralEdu.append(['CC'+ele['id'],ele['name'].strip(), CCinfoSoup])
+# print(coreGeneralEduV2)
 # for r in coreGeneralEdu:
 #     print(r)
 with open('AllCourse.json','w',encoding='utf8') as f:
     f.write(json.dumps(all_course, ensure_ascii=False).encode("utf8",errors='ignore').decode("utf8",errors='ignore'))
-with open('GeneralEduList.json','w',encoding='utf8') as f:
-    f.write(json.dumps(coreGeneralEdu, ensure_ascii=False).encode("utf8",errors='ignore').decode("utf8",errors='ignore'))
+# with open('GeneralEduList.json','w',encoding='utf8') as f:
+#     f.write(json.dumps(coreGeneralEduV2, ensure_ascii=False).encode("utf8",errors='ignore').decode("utf8",errors='ignore'))
