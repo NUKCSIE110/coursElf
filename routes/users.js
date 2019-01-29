@@ -77,10 +77,12 @@ router.get("/mycourse", function(req, res, next) {
     let common = passed.filter(x => x[0].match(/^GR.+/));
     let chinese = common.filter(x => x[1].match(/^中文.+/));
     let english = common.filter(x => x[1].match(/^英語會話與閱讀.+/));
-    common = { chinese, english };
+    let other = common.filter(x => x[1].match(/^(?!中文|英語會話與閱讀)/));
+    common = { chinese, english, other };
     let common_p = {
       chinese: chinese.reduce(calcPoint, 0),
-      english: english.reduce(calcPoint, 0)
+      english: english.reduce(calcPoint, 0),
+      other: other.reduce(calcPoint, 0)
     };
     calcPointOfObj(common_p);
 
