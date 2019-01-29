@@ -1,0 +1,11 @@
+extends layout
+
+block css
+  link(rel="stylesheet", href="/stylesheets/error.css")
+
+block content
+  i(class="fas fa-beer")
+  h1
+    p 噢不!&nbsp;小精靈看起來ㄎㄧㄤ掉了
+    p 晚點再回來看看吧
+  h2= `${message}`
