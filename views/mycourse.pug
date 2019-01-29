@@ -28,6 +28,9 @@ block content
                     li
                         p= `英文 ${donePoint.common.english} 學分`
                         +courseList(doneCourse.common.english)
+                    li
+                        p= `其他 ${donePoint.common.other} 學分`
+                        +courseList(doneCourse.common.other)
             li
                 p= `核心通識 ${donePoint.cc} 學分`
                 +courseList(doneCourse.cc)
