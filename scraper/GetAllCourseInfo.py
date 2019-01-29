@@ -71,7 +71,8 @@ for ele in soup:
         tempCourse['compulsory'] = True
     else:
         tempCourse['compulsory'] = False
-    tempCourse['teacher'] = tdSet[12].text
+    tempCourse['teacher'] = tdSet[12].decode_contents()[0:-5].replace('<br/>',',')
+    # print(tdSet[12].decode_contents()[0:-5].replace('<br/>',','))
     tempCourse['location'] = tdSet[13].text
     # tempCourse['limit'] = tdSet[21].text
     course_time = []
@@ -91,7 +92,7 @@ for ele in soup:
     tempCourse['time'] = course_time
     if '限修' in tdSet[21].text:
         limitList = ''
-        limitReq = requests.get('https://course.nuk.edu.tw/QueryCourse/Limit.asp?OpenYear='+currentYear+'&Helf='+currentSemester+'&Sclass='+tempCourse['dept']+'&Cono='+tempCourse['id'])
+        limitReq = requests.get('https://course.nuk.edu.tw/QueryCourse/Limit.asp?OpenYear='+str(currentYear)+'&Helf='+str(currentSemester)+'&Sclass='+tempCourse['dept']+'&Cono='+tempCourse['id'])
         limitReq.encoding = 'big5'
         limitSoup = bs4.BeautifulSoup(limitReq.text, 'html.parser')
         limitSoup = limitSoup.select('table[border="0"] td[width="80%"]')
