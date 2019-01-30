@@ -13,3 +13,4 @@ allCourse.forEach(e => {
   let newCourse = new courseModel(e);
   newCourse.save().then(() => console.log(`${++counter} Succeed`));
 });
+console.log("done");
