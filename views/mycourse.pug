@@ -36,8 +36,8 @@ block content
                 ul
                 if(doneCourse.cc.science.length !== 0)
                     li
-                        p= `科學素養 ${donePoint.by.li} 學分`
-                        +courseList(doneCourse.by.li)
+                        p= `科學素養 ${donePoint.cc.science} 學分`
+                        +courseList(doneCourse.cc.sciencs)
                 if(doneCourse.cc.ethics.length !== 0)
                     li
                         p= `倫理素養 ${donePoint.cc.ethics} 學分`
@@ -45,7 +45,7 @@ block content
                 if(doneCourse.cc.thinking.length !== 0)
                     li
                         p= `思維方法 ${donePoint.cc.thinking} 學分`
-                        +courseList(doneCourse.cc.thinkint)
+                        +courseList(doneCourse.cc.thinking)
                 if(doneCourse.cc.aesthetics.length !== 0)
                     li
                         p= `美學素養 ${donePoint.cc.aesthetics} 學分`
