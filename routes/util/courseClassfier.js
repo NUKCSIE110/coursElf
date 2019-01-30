@@ -13,7 +13,7 @@ let parseRules = (courses, rules) => {
   for (let name in rules) {
     let rule = () => {};
 
-    if (name === "rule") continue;
+    if (name === "premise") continue;
 
     if (typeof rules[name] === "function") {
       rtVal[name] = sub_courses.filter(rules[name]);
