@@ -1,33 +1,11 @@
-let classify_rules = {
-  common: {
-    rule: x => /^GR.+/.test(x[0]),
-    chinese: x => /^中文.+/.test(x[1]),
-    english: x => /^英語會話與閱讀.+/.test(x[1])
-  },
-  cc: x => x[0].match(/^CC.+/),
-  by: {
-    rule: x => /^(LI|SC|SO)/.test(x[0]),
-    li: x => /^LI.+/.test(x[0]),
-    sc: x => /^SC.+/.test(x[0]),
-    so: x => /^SO.+/.test(x[0])
-  },
-  dept: {
-    rule: x => new RegExp(`^${dept[0]}.+`).test(x[0]),
-    compulsory: x => x[4],
-    choose: x => !x[4]
-  }
-};
-
-let dept = []; //Remain uninitialize
-
 //把課程結構化
 let parseRules = (courses, rules) => {
   //Filter to target condition
   let sub_courses = [];
-  if (typeof rules["rule"] === "function") {
-    sub_courses = courses.filter(rules["rule"]);
+  if (typeof rules["premise"] === "function") {
+    sub_courses = courses.filter(rules["premise"]);
   } else {
-    sub_courses = courses;
+    sub_courses = courses; //Default premise
   }
 
   let rtVal = {};
@@ -42,7 +20,7 @@ let parseRules = (courses, rules) => {
       rule = rules[name];
     } else if (typeof rules[name] === "object") {
       rtVal[name] = parseRules(sub_courses, rules[name]);
-      rule = rules[name]["rule"];
+      rule = rules[name]["premise"];
     }
 
     //Take complement
@@ -75,8 +53,46 @@ let calcPoint = course => {
   return rtVal;
 };
 
-let classfier = function(my_courses, sid_dept) {
-  dept = sid_dept; //Initialize global varible
+let classfier = function(my_courses, dept) {
+  let classify_rules = {
+    //共同必修
+    common: {
+      premise: x => /^GR.+/.test(x[0]),
+      
+      chinese: x => /^中文.+/.test(x[1]),
+      english: x => /^英語會話與閱讀.+/.test(x[1])
+    },
+
+    //核心通識
+    cc: {
+      premise: x => /^CC.+/.test(x[0]),
+
+      science: x => /^CCC5.+/.test(x[0]),
+      ethics: x => /^CCC6.+/.test(x[0]),
+      thinking: x => /^CCI1.+/.test(x[0]),
+      aesthetics: x => /^CCI2.+/.test(x[0]),
+      civil: x => /^CCO3.+/.test(x[0]),
+      culture: x => /^CCO4.+/.test(x[0])
+    },
+
+    //博雅通識
+    by: {
+      premise: x => /^(LI|SC|SO)/.test(x[0]),
+      
+      humanities: x => /^LI.+/.test(x[0]),
+      science: x => /^SC.+/.test(x[0]),
+      society: x => /^SO.+/.test(x[0])
+    },
+
+    // 系必修/系選修
+    dept: {
+      premise: x => new RegExp(`^${dept[0]}.+`).test(x[0]),
+      
+      compulsory: x => x[4],
+      choose: x => !x[4]
+    }
+  };
+
   let passed = my_courses.filter(x => x[3] >= 60);
 
   let doneCourse = parseRules(passed, classify_rules);
