@@ -1,29 +1,38 @@
 .content
     padding-top: 10vh;
+    
+.cardCraft
+    color: #212529;
+    min-height: 5em
+    margin: 1.5em 0 1em 0
+    width: 100%
+    background-color: white
+    transition: all 1s
+    box-shadow: 0.25em 0.25em 0.5em 0em rgba(0,0,0,0.5)
+    padding: 1em
+    box-sizing: border-box
+    &>p
+        margin: 1em 0
+        font-weight: 500
+    &.uncommit
+        opacity: 0.3
+    &.failed
+        opacity: 0.3
+        background: lighten(#f00,35);
+        *
+            color: darkred !important;
+        
 .doneCourse
     h2
         font-size: 1.5rem
         letter-spacing: 0.15em
-    &>ul>li
-        color: #212529;
-        text-decoration: none;
-        min-height: 5em
-        margin-top: 1.5em
-        width: 100%
-        background-color: white
-        transition: all 1s
-        box-shadow: 0.25em 0.25em 0.5em 0em rgba(0,0,0,0.5)
-        padding: 1em
-        box-sizing: border-box
-        //display: flex
-        //justify-content: space-around
-        //align-items: center
-        
-    li
+    ul
+        margin-left: 2%
+    .cardCraft li
         &:not(.course)>p
             margin: 1em 0
             font-weight: 500
-        ul,&.course
+        &.course
             margin-left: 2%
         &.course
             display: flex
@@ -43,13 +52,6 @@
             .score
                 min-width: 7em
                 flex: 1
-        &.uncommit
-            opacity: 0.3
-        &.failed
-            opacity: 0.3
-            background: lighten(#f00,35);
-            *
-                color: darkred !important;
     .totalPoint
         text-align: right
         font-size: 1.2em

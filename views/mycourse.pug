@@ -18,77 +18,74 @@ mixin courseList(collection)
 block content
     .doneCourse
         h2 我通過的課
-        ul
-            li 
-                p= `共同必修 ${donePoint.common.p} 學分`
-                ul
+        .cardCraft
+            p= `共同必修 ${donePoint.common.p} 學分`
+            ul
+                li
+                    p= `中文 ${donePoint.common.chinese} 學分`
+                    +courseList(doneCourse.common.chinese)
+                li
+                    p= `英文 ${donePoint.common.english} 學分`
+                    +courseList(doneCourse.common.english)
+                li
+                    p= `其他 ${donePoint.common.other} 學分`
+                    +courseList(doneCourse.common.other)
+        .cardCraft
+            p= `核心通識 ${donePoint.cc.p} 學分`
+            ul
+                if(doneCourse.cc.science.length !== 0)
                     li
-                        p= `中文 ${donePoint.common.chinese} 學分`
-                        +courseList(doneCourse.common.chinese)
+                        p= `科學素養 ${donePoint.cc.science} 學分`
+                        +courseList(doneCourse.cc.science)
+                if(doneCourse.cc.ethics.length !== 0)
                     li
-                        p= `英文 ${donePoint.common.english} 學分`
-                        +courseList(doneCourse.common.english)
+                        p= `倫理素養 ${donePoint.cc.ethics} 學分`
+                        +courseList(doneCourse.cc.ethics)
+                if(doneCourse.cc.thinking.length !== 0)
                     li
-                        p= `其他 ${donePoint.common.other} 學分`
-                        +courseList(doneCourse.common.other)
-            li
-                p= `核心通識 ${donePoint.cc.p} 學分`
-                ul
-                    if(doneCourse.cc.science.length !== 0)
-                        li
-                            p= `科學素養 ${donePoint.cc.science} 學分`
-                            +courseList(doneCourse.cc.science)
-                    if(doneCourse.cc.ethics.length !== 0)
-                        li
-                            p= `倫理素養 ${donePoint.cc.ethics} 學分`
-                            +courseList(doneCourse.cc.ethics)
-                    if(doneCourse.cc.thinking.length !== 0)
-                        li
-                            p= `思維方法 ${donePoint.cc.thinking} 學分`
-                            +courseList(doneCourse.cc.thinking)
-                    if(doneCourse.cc.aesthetics.length !== 0)
-                        li
-                            p= `美學素養 ${donePoint.cc.aesthetics} 學分`
-                            +courseList(doneCourse.cc.aesthetics)
-                    if(doneCourse.cc.civil.length !== 0)
-                        li
-                            p= `公民素養 ${donePoint.cc.civil} 學分`
-                            +courseList(doneCourse.cc.civil)
-                    if(doneCourse.cc.culture.length !== 0)
-                        li
-                            p= `文化素養 ${donePoint.cc.culture} 學分`
-                            +courseList(doneCourse.cc.culture)
+                        p= `思維方法 ${donePoint.cc.thinking} 學分`
+                        +courseList(doneCourse.cc.thinking)
+                if(doneCourse.cc.aesthetics.length !== 0)
+                    li
+                        p= `美學素養 ${donePoint.cc.aesthetics} 學分`
+                        +courseList(doneCourse.cc.aesthetics)
+                if(doneCourse.cc.civil.length !== 0)
+                    li
+                        p= `公民素養 ${donePoint.cc.civil} 學分`
+                        +courseList(doneCourse.cc.civil)
+                if(doneCourse.cc.culture.length !== 0)
+                    li
+                        p= `文化素養 ${donePoint.cc.culture} 學分`
+                        +courseList(doneCourse.cc.culture)
 
-            li
-                p= `博雅通識 ${donePoint.by.p} 學分`
-                ul
-                    li
-                        p= `人文科學 ${donePoint.by.humanities} 學分`
-                        +courseList(doneCourse.by.humanities)
-                    li
-                        p= `自然科學 ${donePoint.by.science} 學分`
-                        +courseList(doneCourse.by.science)
-                    li
-                        p= `社會科學 ${donePoint.by.society} 學分`
-                        +courseList(doneCourse.by.society)
-            li
-                p= `系必修 ${donePoint.dept.compulsory} 學分`
-                +courseList(doneCourse.dept.compulsory)
-                if(doneCourse.dept.choose.length!==0)
-                    p= `系選修 ${donePoint.dept.choose} 學分`
-                    +courseList(doneCourse.dept.choose)
-                if(doneCourse.other.length!==0)
-                    p= `其他 ${donePoint.other} 學分`
-                    +courseList(doneCourse.other)
+        .cardCraft
+            p= `博雅通識 ${donePoint.by.p} 學分`
+            ul
+                li
+                    p= `人文科學 ${donePoint.by.humanities} 學分`
+                    +courseList(doneCourse.by.humanities)
+                li
+                    p= `自然科學 ${donePoint.by.science} 學分`
+                    +courseList(doneCourse.by.science)
+                li
+                    p= `社會科學 ${donePoint.by.society} 學分`
+                    +courseList(doneCourse.by.society)
+        .cardCraft
+            p= `系必修 ${donePoint.dept.compulsory} 學分`
+            +courseList(doneCourse.dept.compulsory)
+            if(doneCourse.dept.choose.length!==0)
+                p= `系選修 ${donePoint.dept.choose} 學分`
+                +courseList(doneCourse.dept.choose)
+            if(doneCourse.other.length!==0)
+                p= `其他 ${donePoint.other} 學分`
+                +courseList(doneCourse.other)
 
         p.totalPoint= `總共 ${donePoint.p} 學分`
         if(uncommitCourse.length!==0)
             h2 還沒送成績的課
-            ul
-                li.uncommit
-                    +courseList(uncommitCourse)
+            .cardCraft.uncommit
+                +courseList(uncommitCourse)
         if(failedCourse.length!==0)
             h2 沒有通過的課
-            ul
-                li.failed
-                    +courseList(failedCourse)
+            .cardCraft.failed
+                +courseList(failedCourse)
