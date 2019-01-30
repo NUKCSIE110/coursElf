@@ -1,73 +1,92 @@
-let classfier = function(courses, sid_dept){
-    let calcPoint = (acc, e) => (acc += parseFloat(e[2]));
-    let calcPointOfObj = obj => {
-      obj["p"] = Object.keys(obj).reduce((acc, x) => (acc += obj[x]), 0);
-    };
-    let passed = courses.filter(x => x[3] >= 60);
+let classify_rules = {
+  common: {
+    rule: x => /^GR.+/.test(x[0]),
+    chinese: x => /^中文.+/.test(x[1]),
+    english: x => /^英語會話與閱讀.+/.test(x[1])
+  },
+  cc: x => x[0].match(/^CC.+/),
+  by: {
+    rule: x => /^(LI|SC|SO)/.test(x[0]),
+    li: x => /^LI.+/.test(x[0]),
+    sc: x => /^SC.+/.test(x[0]),
+    so: x => /^SO.+/.test(x[0])
+  },
+  dept: {
+    rule: x => new RegExp(`^${dept[0]}.+`).test(x[0]),
+    compulsory: x => x[4],
+    choose: x => !x[4]
+  }
+};
 
-    //共同必修
-    let common = passed.filter(x => x[0].match(/^GR.+/));
-    let chinese = common.filter(x => x[1].match(/^中文.+/));
-    let english = common.filter(x => x[1].match(/^英語會話與閱讀.+/));
-    let other = common.filter(x => x[1].match(/^(?!中文|英語會話與閱讀)/));
-    common = { chinese, english, other };
-    let common_p = {
-      chinese: chinese.reduce(calcPoint, 0),
-      english: english.reduce(calcPoint, 0),
-      other: other.reduce(calcPoint, 0)
-    };
-    calcPointOfObj(common_p);
+let dept = []; //Remain uninitialize
 
-    //核心通識
-    let cc = passed.filter(x => x[0].match(/^CC.+/));
-    let cc_p = cc.reduce(calcPoint, 0);
+//把課程結構化
+let parseRules = (courses, rules) => {
+  //Filter to target condition
+  let sub_courses = [];
+  if (typeof rules["rule"] === "function") {
+    sub_courses = courses.filter(rules["rule"]);
+  } else {
+    sub_courses = courses;
+  }
 
-    //博雅通識
-    let li = passed.filter(x => x[0].match(/^LI.+/));
-    let sc = passed.filter(x => x[0].match(/^SC.+/));
-    let so = passed.filter(x => x[0].match(/^SO.+/));
-    let by = { li, sc, so };
-    let by_p = {
-      li: li.reduce(calcPoint, 0),
-      sc: sc.reduce(calcPoint, 0),
-      so: so.reduce(calcPoint, 0)
-    };
-    calcPointOfObj(by_p);
+  let rtVal = {};
+  let other = sub_courses;
+  for (let name in rules) {
+    let rule = () => {};
 
-    // 系必修/系選修
-    let dept = passed.filter(x =>
-      x[0].match(new RegExp(`^${sid_dept[0]}.+`))
-    );
-    let dept_compulsory = dept.filter(x => x[4]);
-    let dept_choose = dept.filter(x => !x[4]);
-    dept = { compulsory: dept_compulsory, choose: dept_choose };
-    let dept_p = {
-      compulsory: dept_compulsory.reduce(calcPoint, 0),
-      choose: dept_choose.reduce(calcPoint, 0)
-    };
+    if (name === "rule") continue;
 
-    //剩餘學分
-    let rest = passed.filter(x =>
-      x[0].match(new RegExp(`^(?!GR|CC|LI|SC|SO|${sid_dept[0]})`))
-    );
-    let rest_p = rest.reduce(calcPoint, 0);
+    if (typeof rules[name] === "function") {
+      rtVal[name] = sub_courses.filter(rules[name]);
+      rule = rules[name];
+    } else if (typeof rules[name] === "object") {
+      rtVal[name] = parseRules(sub_courses, rules[name]);
+      rule = rules[name]["rule"];
+    }
 
-    //===指揮挺組合===
-    let doneCourse = { common, cc, by, dept, rest };
-    let donePoint = {
-      common: common_p,
-      cc: cc_p,
-      by: by_p,
-      dept: dept_p,
-      rest: rest_p
-    };
-    donePoint["p"] = passed.reduce(calcPoint, 0);
+    //Take complement
+    other = other.filter(x => !rule(x));
+  }
 
-    //未送成績和棄選的
-    let uncommitCourse = courses.filter(x => x[3] === "未送");
-    let failedCourse = courses.filter(x => x[3] < 60);
+  rtVal["other"] = other;
 
-    return {doneCourse, donePoint, uncommitCourse, failedCourse};
-}
+  return rtVal;
+};
+
+//結構化成績計算
+let calcPoint = course => {
+  let rtVal = {};
+  if (course.constructor === Array) {
+    rtVal = course.reduce((acc, e) => (acc += parseFloat(e[2])), 0);
+  } else {
+    let total = 0;
+    for (let name in course) {
+      let sumSubElement = calcPoint(course[name]);
+      if (typeof sumSubElement === "number") {
+        total += sumSubElement;
+      } else {
+        total += sumSubElement.p;
+      }
+      rtVal[name] = sumSubElement;
+    }
+    rtVal["p"] = total;
+  }
+  return rtVal;
+};
+
+let classfier = function(my_courses, sid_dept) {
+  dept = sid_dept; //Initialize global varible
+  let passed = my_courses.filter(x => x[3] >= 60);
+
+  let doneCourse = parseRules(passed, classify_rules);
+  let donePoint = calcPoint(doneCourse);
+
+  //未送成績和棄選的
+  let uncommitCourse = my_courses.filter(x => x[3] === "未送");
+  let failedCourse = my_courses.filter(x => x[3] < 60);
+
+  return { doneCourse, donePoint, uncommitCourse, failedCourse };
+};
 
 module.exports = classfier;

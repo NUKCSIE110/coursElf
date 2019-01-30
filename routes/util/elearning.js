@@ -47,7 +47,7 @@ var elearningLogin = {
       let options = {
         mode: "text",
         pythonOptions: ["-u"], // get print results in real-time
-        scriptPath: path.join(__dirname, "../scraper"),
+        scriptPath: path.join(__dirname, "../../scraper"),
         args: [sid, pw]
       };
       PythonShell.run("getDoneCourse.py", options, function(err, results) {
