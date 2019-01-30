@@ -69,7 +69,7 @@ router.get("/mycourse", function(req, res, next) {
   if (req.session.loggedin !== true) {
     res.redirect("/");
   } else {
-    let calcPoint = (acc, e) => (acc += Number(e[2]));
+    let calcPoint = (acc, e) => (acc += parseFloat(e[2]));
     let calcPointOfObj = obj => {
       obj["p"] = Object.keys(obj).reduce((acc, x) => (acc += obj[x]), 0);
     };
