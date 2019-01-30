@@ -39,7 +39,6 @@ deptID = {
     '化學工程及材料工程學系':'****56',
     '資訊工程學系':'****55'
     }
-#使用chrome的webdriver
 currentYear = 107
 currentSemester = 2
 coreGeneralEduV2 = {} # 核心通識分類
@@ -101,35 +100,16 @@ for ele in soup:
             # print(ele.text)
             if '年級' in ele.text:
                 limitList+=ele.text[-7:-1]
-                # print(ele.text[-7:-1])
             else:
                 try:
                     limitList+=deptID[ele.text]
-                    # print(deptID[ele.text])
                 except:
                     limitList+=ele.text.split(' ')[0]
-                    # print(ele.text.split(' ')[0])
             limitList+=';'
-        # print(limitList.split(';')[:-1])
         tempCourse['limit'] = limitList.split(';')[:-1]
     all_course.append(tempCourse)
     # print(all_course)
-# for ele in all_course:
-#     # print(ele['dept'])
-#     if ele['dept'] == 'CC':
-#         # print(ele['id'])
-#         infoUrl = 'https://course.nuk.edu.tw/QueryCourse/tcontent.asp?OpenYear=' + str(y) + '&Helf=' + str(semester) + '&Sclass=CC&Cono=' + ele['id']
-#         CCinfo = requests.get(infoUrl)
-#         CCinfo.encoding = 'big5'
-#         CCinfoSoup = bs4.BeautifulSoup(CCinfo.text,'html.parser')
-#         # td[11]是通識分類 取出之後為"科學素養－科學素養" 再將其切割為"科學素養"
-#         CCinfoSoup = CCinfoSoup.find_all('td')[11].text.split('－')[0]
-#         coreGeneralEduV2['CC'+ele['id'] +'Y'+str(y) + str(semester)] = [ele['name'].strip(), CCinfoSoup]
-        # coreGeneralEdu.append(['CC'+ele['id'],ele['name'].strip(), CCinfoSoup])
-# print(coreGeneralEduV2)
 # for r in coreGeneralEdu:
 #     print(r)
 with open('AllCourse.json','w',encoding='utf8') as f:
     f.write(json.dumps(all_course, ensure_ascii=False).encode("utf8",errors='ignore').decode("utf8",errors='ignore'))
-# with open('GeneralEduList.json','w',encoding='utf8') as f:
-#     f.write(json.dumps(coreGeneralEduV2, ensure_ascii=False).encode("utf8",errors='ignore').decode("utf8",errors='ignore'))
