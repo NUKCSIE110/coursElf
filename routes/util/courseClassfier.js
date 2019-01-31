@@ -55,54 +55,55 @@ let calcPoint = course => {
 
 let classfier = function(my_courses, dept) {
   let classify_rules = {
-    //共同必修
-    common: {
-      premise: x => /^GR.+/.test(x[0]),
-      
-      chinese: x => /^中文.+/.test(x[1]),
-      english: x => /^英語會話與閱讀.+/.test(x[1])
+    done: {
+      premise: x => x[3] >= 60,
+      //共同必修
+      common: {
+        premise: x => /^GR.+/.test(x[0]),
+
+        chinese: x => /^中文.+/.test(x[1]),
+        english: x => /^英語會話與閱讀.+/.test(x[1])
+      },
+
+      //核心通識
+      cc: {
+        premise: x => /^CC.+/.test(x[0]),
+
+        science: x => /^CCC5.+/.test(x[0]),
+        ethics: x => /^CCC6.+/.test(x[0]),
+        thinking: x => /^CCI1.+/.test(x[0]),
+        aesthetics: x => /^CCI2.+/.test(x[0]),
+        civil: x => /^CCO3.+/.test(x[0]),
+        culture: x => /^CCO4.+/.test(x[0])
+      },
+
+      //博雅通識
+      by: {
+        premise: x => /^(LI|SC|SO)/.test(x[0]),
+
+        humanities: x => /^LI.+/.test(x[0]),
+        science: x => /^SC.+/.test(x[0]),
+        society: x => /^SO.+/.test(x[0])
+      },
+
+      // 系必修/系選修
+      dept: {
+        premise: x => new RegExp(`^${dept[0]}.+`).test(x[0]),
+
+        compulsory: x => x[4],
+        choose: x => !x[4]
+      }
     },
-
-    //核心通識
-    cc: {
-      premise: x => /^CC.+/.test(x[0]),
-
-      science: x => /^CCC5.+/.test(x[0]),
-      ethics: x => /^CCC6.+/.test(x[0]),
-      thinking: x => /^CCI1.+/.test(x[0]),
-      aesthetics: x => /^CCI2.+/.test(x[0]),
-      civil: x => /^CCO3.+/.test(x[0]),
-      culture: x => /^CCO4.+/.test(x[0])
-    },
-
-    //博雅通識
-    by: {
-      premise: x => /^(LI|SC|SO)/.test(x[0]),
-      
-      humanities: x => /^LI.+/.test(x[0]),
-      science: x => /^SC.+/.test(x[0]),
-      society: x => /^SO.+/.test(x[0])
-    },
-
-    // 系必修/系選修
-    dept: {
-      premise: x => new RegExp(`^${dept[0]}.+`).test(x[0]),
-      
-      compulsory: x => x[4],
-      choose: x => !x[4]
-    }
+    //未送成績, 被當的和棄選的
+    uncommit: x => x[3] === "未送",
+    failed: x => x[3] < 60,
+    discard: x => x[3] === "棄選"
   };
 
-  let passed = my_courses.filter(x => x[3] >= 60);
+  let course = parseRules(my_courses, classify_rules);
+  let point = calcPoint(course);
 
-  let doneCourse = parseRules(passed, classify_rules);
-  let donePoint = calcPoint(doneCourse);
-
-  //未送成績和棄選的
-  let uncommitCourse = my_courses.filter(x => x[3] === "未送");
-  let failedCourse = my_courses.filter(x => x[3] < 60);
-
-  return { doneCourse, donePoint, uncommitCourse, failedCourse };
+  return { course, point };
 };
 
 module.exports = classfier;

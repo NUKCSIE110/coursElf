@@ -72,18 +72,14 @@ router.get("/mycourse", function(req, res, next) {
   } else {
     
     let {
-      doneCourse,
-      donePoint,
-      uncommitCourse,
-      failedCourse
+      course,
+      point,
     } = courseClassfier(req.session.doneCourse, req.session.dept);
 
     res.render("mycourse", {
       loggedin: req.session.loggedin,
-      doneCourse,
-      donePoint,
-      uncommitCourse,
-      failedCourse
+      course,
+      point,
     });
   }
 });

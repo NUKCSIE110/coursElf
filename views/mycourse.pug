@@ -19,73 +19,77 @@ block content
     .doneCourse
         h2 我通過的課
         .cardCraft
-            p= `共同必修 ${donePoint.common.p} 學分`
+            p= `共同必修 ${point.done.common.p} 學分`
             ul
                 li
-                    p= `中文 ${donePoint.common.chinese} 學分`
-                    +courseList(doneCourse.common.chinese)
+                    p= `中文 ${point.done.common.chinese} 學分`
+                    +courseList(course.done.common.chinese)
                 li
-                    p= `英文 ${donePoint.common.english} 學分`
-                    +courseList(doneCourse.common.english)
+                    p= `英文 ${point.done.common.english} 學分`
+                    +courseList(course.done.common.english)
                 li
-                    p= `其他 ${donePoint.common.other} 學分`
-                    +courseList(doneCourse.common.other)
+                    p= `其他 ${point.done.common.other} 學分`
+                    +courseList(course.done.common.other)
         .cardCraft
-            p= `核心通識 ${donePoint.cc.p} 學分`
+            p= `核心通識 ${point.done.cc.p} 學分`
             ul
-                if(doneCourse.cc.science.length !== 0)
+                if(course.done.cc.science.length !== 0)
                     li
-                        p= `科學素養 ${donePoint.cc.science} 學分`
-                        +courseList(doneCourse.cc.science)
-                if(doneCourse.cc.ethics.length !== 0)
+                        p= `科學素養 ${point.done.cc.science} 學分`
+                        +courseList(course.done.cc.science)
+                if(course.done.cc.ethics.length !== 0)
                     li
-                        p= `倫理素養 ${donePoint.cc.ethics} 學分`
-                        +courseList(doneCourse.cc.ethics)
-                if(doneCourse.cc.thinking.length !== 0)
+                        p= `倫理素養 ${point.done.cc.ethics} 學分`
+                        +courseList(course.done.cc.ethics)
+                if(course.done.cc.thinking.length !== 0)
                     li
-                        p= `思維方法 ${donePoint.cc.thinking} 學分`
-                        +courseList(doneCourse.cc.thinking)
-                if(doneCourse.cc.aesthetics.length !== 0)
+                        p= `思維方法 ${point.done.cc.thinking} 學分`
+                        +courseList(course.done.cc.thinking)
+                if(course.done.cc.aesthetics.length !== 0)
                     li
-                        p= `美學素養 ${donePoint.cc.aesthetics} 學分`
-                        +courseList(doneCourse.cc.aesthetics)
-                if(doneCourse.cc.civil.length !== 0)
+                        p= `美學素養 ${point.done.cc.aesthetics} 學分`
+                        +courseList(course.done.cc.aesthetics)
+                if(course.done.cc.civil.length !== 0)
                     li
-                        p= `公民素養 ${donePoint.cc.civil} 學分`
-                        +courseList(doneCourse.cc.civil)
-                if(doneCourse.cc.culture.length !== 0)
+                        p= `公民素養 ${point.done.cc.civil} 學分`
+                        +courseList(course.done.cc.civil)
+                if(course.done.cc.culture.length !== 0)
                     li
-                        p= `文化素養 ${donePoint.cc.culture} 學分`
-                        +courseList(doneCourse.cc.culture)
+                        p= `文化素養 ${point.done.cc.culture} 學分`
+                        +courseList(course.done.cc.culture)
 
         .cardCraft
-            p= `博雅通識 ${donePoint.by.p} 學分`
+            p= `博雅通識 ${point.done.by.p} 學分`
             ul
                 li
-                    p= `人文科學 ${donePoint.by.humanities} 學分`
-                    +courseList(doneCourse.by.humanities)
+                    p= `人文科學 ${point.done.by.humanities} 學分`
+                    +courseList(course.done.by.humanities)
                 li
-                    p= `自然科學 ${donePoint.by.science} 學分`
-                    +courseList(doneCourse.by.science)
+                    p= `自然科學 ${point.done.by.science} 學分`
+                    +courseList(course.done.by.science)
                 li
-                    p= `社會科學 ${donePoint.by.society} 學分`
-                    +courseList(doneCourse.by.society)
+                    p= `社會科學 ${point.done.by.society} 學分`
+                    +courseList(course.done.by.society)
         .cardCraft
-            p= `系必修 ${donePoint.dept.compulsory} 學分`
-            +courseList(doneCourse.dept.compulsory)
-            if(doneCourse.dept.choose.length!==0)
-                p= `系選修 ${donePoint.dept.choose} 學分`
-                +courseList(doneCourse.dept.choose)
-            if(doneCourse.other.length!==0)
-                p= `其他 ${donePoint.other} 學分`
-                +courseList(doneCourse.other)
+            p= `系必修 ${point.done.dept.compulsory} 學分`
+            +courseList(course.done.dept.compulsory)
+            if(course.done.dept.choose.length!==0)
+                p= `系選修 ${point.done.dept.choose} 學分`
+                +courseList(course.done.dept.choose)
+            if(course.done.other.length!==0)
+                p= `其他 ${point.done.other} 學分`
+                +courseList(course.done.other)
 
-        p.totalPoint= `總共 ${donePoint.p} 學分`
-        if(uncommitCourse.length!==0)
+        p.totalPoint= `總共 ${point.done.p} 學分`
+        if(course.uncommit.length!==0)
             h2 還沒送成績的課
             .cardCraft.uncommit
-                +courseList(uncommitCourse)
-        if(failedCourse.length!==0)
+                +courseList(course.uncommit)
+        if(course.discard.length!==0)
+            h2 棄選的課
+            .cardCraft.uncommit
+                +courseList(course.discard)
+        if(course.failed.length!==0)
             h2 沒有通過的課
             .cardCraft.failed
-                +courseList(failedCourse)
+                +courseList(course.failed)
