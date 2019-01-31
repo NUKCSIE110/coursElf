@@ -24,7 +24,7 @@ function init() {
   //Register service-worker
   if ('serviceWorker' in navigator) {
     console.log("Will the service worker register?");
-    navigator.serviceWorker.register('service-worker.js')
+    navigator.serviceWorker.register('/service-worker.js')
       .then(function(reg){
         console.log("Yes, it did.");
       }).catch(function(err) {
