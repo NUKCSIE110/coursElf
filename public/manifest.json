@@ -1,21 +1,21 @@
 {
-    "short_name": "選課小精靈",
-    "name": "NUK選課小精靈",
-    "icons": [
-      {
-        "src": "/icon-192x192.png",
-        "type": "image/png",
-        "sizes": "192x192"
-      },
-      {
-        "src": "/icon-250.png",
-        "type": "image/png",
-        "sizes": "250x250"
-      }
-    ],
-    "start_url": "/",
-    "background_color": "#fafafa",
-    "display": "standalone",
-    "scope": "/",
-    "theme_color": "#fafafa"
-  }
+  "short_name": "選課小精靈",
+  "name": "NUK選課小精靈",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-250x250.png",
+      "type": "image/png",
+      "sizes": "250x250"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#fafafa"
+}
