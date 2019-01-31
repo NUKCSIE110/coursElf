@@ -1,5 +1,5 @@
 function init() {
-  $(".titleBar .burger").click((e) => {
+  $(".titleBar .burger").click(e => {
     $(".titleBar nav").slideToggle();
     e.stopPropagation();
   });
@@ -13,6 +13,12 @@ function init() {
   });
   $("body").click(() => {
     if (window.innerWidth <= 560) $(".titleBar nav").slideUp();
+  });
+  setTimeout(function() {
+    window.scrollTo(0, 1);
+  }, 100);
+  $(window).resize(function() {
+    window.scrollTo(0, 1);
   });
 }
 init();

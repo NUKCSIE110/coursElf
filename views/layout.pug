@@ -1,14 +1,36 @@
 doctype html
 html
   head
+    //Mobile optimize
     meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name="apple-mobile-web-app-capable", content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style", content="black")
+    link(rel="apple-touch-startup-image",href="/icon-192x192.png")
+    meta(name="mobile-web-app-capable", content="yes")
+
+    //SEO
+    meta(charset="UTF-8")
+    meta(name="description", content="一個幫助高雄大學的學生選課的小精靈")
+    
+    //Open Graph data
+    meta(property="og:title", content="選課小精靈 - 用更舒服的方式來選課吧")
+    meta(property="og:type", content="website")
+    meta(property="og:url", content="https://courself.herokuapp.com/")
+    meta(property="og:description", content="你的眼睛值得更好的對待")
+    meta(property="og:site_name", content="NUK選課小精靈")
+    //Only absolute path works
+    meta(property="og:image", content="https://courself.herokuapp.com/icon-192x192.png")
+    
+    //Favicon
+    link(rel="icon",type="image/png",sizes="192x192",href="/icon-192x192.png")
+    link(rel="apple-touch-icon", sizes="192x192", href="favicon.png")
+
     title NUK選課小精靈
     link(rel='stylesheet', href='/stylesheets/reset.css')
     link(rel='stylesheet', href='/stylesheets/layout.css')
     link(rel='stylesheet', href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Righteous|VT323")
     link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.6.3/css/all.css")
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css")
-    link(rel="icon",type="image/png",sizes="192x192",href="/icon-192x192.png")
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js')
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js")
     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js")
