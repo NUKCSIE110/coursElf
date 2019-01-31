@@ -1,5 +1,5 @@
 require("dotenv").load({ path: "../.env" });
-let allCourse = require("./AllCourse.json");
+let allCourse = require("../data/AllCourse.json");
 const courseModel = require("../models/courseModel");
 
 //DO NOT execute it twice

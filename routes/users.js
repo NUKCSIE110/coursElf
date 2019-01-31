@@ -2,7 +2,7 @@ var express = require("express");
 var elearning = require("./util/elearning");
 var userModel = require("../models/userModel");
 var sha512 = require("js-sha512").sha512;
-var deptTable = require("../scraper/dept.json");
+var deptTable = require("../data/dept.json");
 var courseClassfier = require("./util/courseClassfier");
 var router = express.Router();
 

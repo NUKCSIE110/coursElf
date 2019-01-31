@@ -1,5 +1,5 @@
 var express = require("express");
-var classList = require("../test_data/class.json");
+var classList = require("../data/courceType.json");
 var router = express.Router();
 
 /* GET home page. */

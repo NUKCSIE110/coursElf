@@ -111,5 +111,5 @@ for ele in soup:
     # print(all_course)
 # for r in coreGeneralEdu:
 #     print(r)
-with open('AllCourse.json','w',encoding='utf8') as f:
+with open('../data/AllCourse.json','w',encoding='utf8') as f:
     f.write(json.dumps(all_course, ensure_ascii=False).encode("utf8",errors='ignore').decode("utf8",errors='ignore'))

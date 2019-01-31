@@ -34,5 +34,5 @@ for y in range(103,108):
                 CCinfoSoup = CCinfoSoup.find_all('td')[11].text.split('－')[0]
                 coreGeneralEduV2['CC'+ele['id'] +'Y'+str(y) + str(semester)] = [ele['name'].strip(), CCinfoSoup]
         print(coreGeneralEduV2)
-    with open('GeneralEduList.json','w',encoding='utf8') as f:
+    with open('../data/GeneralEduList.json','w',encoding='utf8') as f:
     f.write(json.dumps(coreGeneralEduV2, ensure_ascii=False).encode("utf8",errors='ignore').decode("utf8",errors='ignore'))

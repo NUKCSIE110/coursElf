@@ -1,5 +1,5 @@
 require("should");
-let deptTable = require("../scraper/dept.json");
+let deptTable = require("../data/dept.json");
 let classifier = require("../routes/util/courseClassfier");
 
 describe("Course classifier", () => {
