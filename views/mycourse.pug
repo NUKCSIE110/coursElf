@@ -85,10 +85,7 @@ block content
             h2 還沒送成績的課
             .cardCraft.uncommit
                 +courseList(course.uncommit)
-        if(course.failed.length!==0 || course.discard.length!==0)
+        if(course.other.length!==0)
             h2 沒有通過的課
             .cardCraft.failed
-                if(course.failed.length!==0)
-                    +courseList(course.failed)
-                if(course.discard.length!==0)
-                    +courseList(course.discard)
+                +courseList(course.other)

@@ -94,10 +94,10 @@ let classfier = function(my_courses, dept) {
         choose: x => !x[4]
       }
     },
-    //未送成績, 被當的和棄選的
+    //未送成績, 被當的和棄選的(other)
     uncommit: x => x[3] === "未送",
-    failed: x => x[3] < 60,
-    discard: x => x[3] === "棄選"
+    //failed: x => x[3] < 60,
+    //discard: x => x[3] === "棄選"
   };
 
   let course = parseRules(my_courses, classify_rules);

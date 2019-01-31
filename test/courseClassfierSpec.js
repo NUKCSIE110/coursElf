@@ -99,13 +99,13 @@ describe("Course classifier", () => {
       ["IMD562", "Java Script 前端應用程式設計", "3", "59.9", true]
     ];
     let result = classifier(course, dept);
-    should(result.course.failed[0]).be.equal(course[0]);
+    should(result.course.other[0]).be.equal(course[0]);
   });
   it("棄選", () => {
     let course = [
       ["IMD562", "Java Script 前端應用程式設計", "3", "棄選", true]
     ];
     let result = classifier(course, dept);
-    should(result.course.discard[0]).be.equal(course[0]);
+    should(result.course.other[0]).be.equal(course[0]);
   });
 });
