@@ -8,7 +8,7 @@ var router = express.Router();
 
 router.get("/login", function(req, res, next) {
   if (!(req.session.loggedin || false)) {
-    res.render("login");
+    res.render("login", {title: "登入 - NUK選課小精靈",});
   } else {
     res.redirect("/");
   }
@@ -77,6 +77,7 @@ router.get("/mycourse", function(req, res, next) {
     } = courseClassfier(req.session.doneCourse, req.session.dept);
 
     res.render("mycourse", {
+      title: "我的學分 - NUK選課小精靈",
       loggedin: req.session.loggedin,
       course,
       point,

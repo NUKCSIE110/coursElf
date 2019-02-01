@@ -101,9 +101,9 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   if (process.env.NODE_ENV === "development") {
-    res.render("error");
+    res.render("error", {title: "ERROR - NUK選課小精靈"});
   } else {
-    res.render("error_production");
+    res.render("error_production", {title: "ERROR - NUK選課小精靈"});
   }
 });
 
