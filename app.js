@@ -23,6 +23,7 @@ require("dotenv").load();
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var apiRouter = require("./routes/api");
+var errorLogModel = require("./models/errorLogModel");
 
 var app = express();
 
@@ -78,6 +79,24 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = process.env.NODE_ENV === "development" ? err : {};
+
+  if (Math.floor(err.status / 100) !== 4) {
+    let newErrorLog = new errorLogModel({
+      time: new Date(Date.now()),
+      message: err.message,
+      status: err.status,
+      stack: err.stack,
+      session: req.session
+    });
+    newErrorLog
+      .save()
+      .then(() => {
+        console.log("Error occured and has been logged");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   // render the error page
   res.status(err.status || 500);
