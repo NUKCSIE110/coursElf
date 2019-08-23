@@ -35,7 +35,7 @@ router.route("/courses/:type/:target").get(async function(req, res, next) {
       detailUrl: ""
     };
     e.detailUrl = `https://course.nuk.edu.tw/QueryCourse/tcontent.asp?
-              OpenYear=107&Helf=2&Sclass=${e.dept}&Cono=${e.id}`.replace(
+              OpenYear=108&Helf=1&Sclass=${e.dept}&Cono=${e.id}`.replace(
       /[\s\t\n]/g,
       ""
     );

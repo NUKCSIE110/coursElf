@@ -13,12 +13,12 @@ function init() {
   let draw = SVG("timeline").size(width, height);
 
   let lables = [
-    { text: "第一階段開始", time: new Date(2019, 0, 28, 9, 0, 0) },
-    { text: "第一階段結束", time: new Date(2019, 1, 1, 12, 0, 0) },
-    { text: "第二階段開始", time: new Date(2019, 1, 11, 12, 0, 0) },
-    { text: "第二階段結束", time: new Date(2019, 1, 15, 12, 0, 0) },
-    { text: "加退選開始", time: new Date(2019, 1, 18, 9, 0, 0) },
-    { text: "加退選結束", time: new Date(2019, 1, 28, 23, 59, 59) }
+    { text: "第一階段開始", time: new Date(2019, 7, 26, 9, 0, 0) },
+    { text: "第一階段結束", time: new Date(2019, 7, 30, 12, 0, 0) },
+    { text: "第二階段開始", time: new Date(2019, 8,  2, 12, 0, 0) },
+    { text: "第二階段結束", time: new Date(2019, 8,  6, 12, 0, 0) },
+    { text: "加退選開始", time: new Date(2019, 8, 9, 9, 0, 0) },
+    { text: "加退選結束", time: new Date(2019, 8, 20, 23, 59, 59) }
   ];
   let lineStart = 5;
   let lineEnd = height - 5;

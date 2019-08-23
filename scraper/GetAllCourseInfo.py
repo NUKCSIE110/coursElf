@@ -39,8 +39,8 @@ deptID = {
     '化學工程及材料工程學系':'****56',
     '資訊工程學系':'****55'
     }
-currentYear = 107
-currentSemester = 2
+currentYear = 108
+currentSemester = 1
 coreGeneralEduV2 = {} # 核心通識分類
 data = '<tr><td+width=""33%"">開課學年：' + str(currentYear) + '　　開課學期：第' + str(currentSemester) + '學期</td><td+width=""33%"">開課部別：大學部</td><td+width=""34%"">開課系所：無</td></tr><tr><td+width=""33%"">開課班級：無</td><td+width=""33%"">授課教師：無</td><td+width=""34%"">上課時間：無</td></tr>'
 req = requests.post('https://course.nuk.edu.tw/QueryCourse/QueryResult.asp', data = {'Condition':data,'Flag': 1,'OpenYear': currentYear,'Helf': currentSemester,'Pclass': 'A','Sclass': '','Yclass': '','SirName': '','Sirno': '','WeekDay': '','Card': '','Subject': '','Language': '','Pre_Cono': '','Coname': ''})
@@ -59,6 +59,10 @@ for ele in soup:
         i+=1
         continue
     tdSet = ele.find_all('td')
+
+    #TODO 微學分奇怪的格式
+    if float(tdSet[6].text.upper()) < 1.0:
+        continue
     tempCourse = {}
     tempCourse['dept'] = tdSet[0].text.upper()
     tempCourse['id'] = tdSet[1].text.upper()
@@ -86,7 +90,11 @@ for ele in soup:
                 elif day == 'Y':
                     course_time.append([i-13, 4.5])
                 else:
-                    course_time.append([i-13, int(day)])
+                    try:
+                        course_time.append([i-13, int(day)])
+                    except ValueError:
+                        print("Convert to int error: {}".format(day))
+                        pass
     
     tempCourse['time'] = course_time
     if '限修' in tdSet[21].text:
