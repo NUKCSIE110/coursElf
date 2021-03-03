@@ -21,7 +21,7 @@
     "memorystore": "^1.6.0",
     "mongoose": "^5.7.5",
     "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11",
+    "pug": "3.0.1",
     "python-shell": "^1.0.7",
     "serve-static": "^1.13.2",
     "stylus": "0.54.5"
